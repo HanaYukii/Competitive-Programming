@@ -1,0 +1,43 @@
+Discription:
+There are N cities have route between them, the routes are undirected and form a tree(undirected acyclic graph). 
+The cost of routes are initial 0, now we have K costs to be assigned to some of them,each cost should be assigned to different route 
+, and the distance of two cities are cosidered the sum of route costs to go from one to the other,
+and our goal is to make the sum of all pair distance minimum (i,j) (j,i) should be considered the same  
+
+
+Input:
+The first line of the input is the number of testcases
+At each testcase first line contains two integers N,K (2?K<N?100000) ¡X the number of city , the number of costs to be assigned
+Each of the following n?1 lines contains two integers ui and vi means the two city exist a route between them
+It's guarantee these N cities and N-1 routes form a tree
+
+Output:
+Print one integer that is equal to the sum of distances between all pairs of cities after optimally assigned the costs
+Since the answer may be large print the answer modulo 998244353
+
+sample1:
+input:
+6 4
+4 3
+2 1
+6 4
+5 3
+1 3
+2 4 4 2 
+output:
+66
+
+sample2
+input:
+9 8
+9 8
+5 8
+2 6
+7 5
+1 3
+4 5
+2 1
+1 4
+7 7 1 5 7 3 5 7 
+output:
+444
