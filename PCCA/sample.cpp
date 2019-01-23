@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include <sys/time.h>
 using namespace std;
 
 #define pb push_back
@@ -23,10 +24,13 @@ void dfs(int now,int pre){
 int main()
 {
     int n,k;
+    struct timeval start,endd;
+    gettimeofday(&start, 0);
     ios_base::sync_with_stdio(false);
     cin.tie(0);	
     int t;
     cin>>t;
+
     while(t--){
         memset(sz,0,sizeof(sz));
         cin>>n>>k;
@@ -62,4 +66,8 @@ int main()
         }
         cout<<ans<<endl;
     }
+    gettimeofday(&endd, 0);
+    int sec = endd.tv_sec - start.tv_sec;
+    int usec = endd.tv_usec - start.tv_usec;
+    printf("Total elapsed time: %.4f sec\n", sec+(usec / 1000000.0));
 }

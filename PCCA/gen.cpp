@@ -4,11 +4,14 @@ using namespace std;
 
 int main(){
 	srand(time(NULL));
-	cout<<10<<endl;
-	for(int t=1;t<=10;t++){
+	cout<<20<<endl;
+	for(int t=1;t<=20;t++){
 		int n;
 		if(t<5){
-			n=rand()%30;
+			n=rand()%30+3;
+		}
+		else if(t<10){
+			n=rand()%25000+3;
 		}
 		else{
 			n=100000;

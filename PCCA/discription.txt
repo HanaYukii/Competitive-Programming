@@ -1,34 +1,38 @@
-Discription:
-There are N cities have route between them, the routes are undirected and form a tree(undirected acyclic graph). 
-The cost of routes are initial 0, now we have K costs to be assigned to some of them,each cost should be assigned to different route 
-, and the distance of two cities are cosidered the sum of route costs to go from one to the other,
-and our goal is to make the sum of all pair distance minimum (i,j) (j,i) should be considered the same  
 
+Discription:
+有n個城市,彼此之間有道路連結,城市之間的道路構成一顆樹 即為無向無環圖,
+城市之間的道路初始皆為費用皆為0,現在為了增加收入,決定在某些道路加上過路費,現有k個花費,需被分配到k條"不同"道路
+
+為了不造成交通費用過高 此次規劃的目標即為讓全點對的最短距離和最小  即為所有dist(i,j) ,1<=i<j<=n 之和最小
 
 Input:
-The first line of the input is the number of testcases
-At each testcase first line contains two integers N,K (2?K<N?100000) — the number of city , the number of costs to be assigned
-Each of the following n?1 lines contains two integers ui and vi means the two city exist a route between them
-It's guarantee these N cities and N-1 routes form a tree
+測試輸入的第一行為一個整數t，代表有多少組測試資料。
 
+每組測試資料第一行為兩個正整數n跟m，代表有n個點和m個待分配花費
+
+接下來n-1行各有2整數ui vi,代表兩個城市間有道路連結
+
+接下來一行有a1~am為待選定位置的花費
+	t<=20
+	2<m<n<=100000
+	ai<=100000
+	保證所有邊構成一棵樹
 Output:
-Print one integer that is equal to the sum of distances between all pairs of cities after optimally assigned the costs
-Since the answer may be large print the answer modulo 998244353
+輸出一個數最小的全點對最短距離和,
+答案可能很大 所以請輸出答案 modulo 998244353
 
-sample1:
+timelimit 4s
+
+sample:
 input:
+2
 6 4
 4 3
 2 1
 6 4
 5 3
 1 3
-2 4 4 2 
-output:
-66
-
-sample2
-input:
+2 4 4 2
 9 8
 9 8
 5 8
@@ -38,6 +42,8 @@ input:
 4 5
 2 1
 1 4
-7 7 1 5 7 3 5 7 
+7 7 1 5 7 3 5 7  
 output:
+66
 444
+
