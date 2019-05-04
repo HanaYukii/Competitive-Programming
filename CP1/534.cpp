@@ -33,25 +33,24 @@ int main(){
 		n=read();
 		r=read();
 		ll cont[n+5] = {};
-		set<ll>st;
+		vector<ll>st;
 		set<int>id;
 		unordered_map<ll,int>mp;
 		ll mp2[n+5]={};
 		f1(n){
 			cont[i]=read();
-			st.insert(cont[i]);
+			st.pb(cont[i]);
 		}
 		int idx=1;
+		sort(st.bg,st.ed);
 		for(auto i:st){
 			mp2[idx]=i;
 			mp[i]=idx++;
 		}
-		f1(n){
+		id.insert(mp[cont[1]]);
+		for(int i=2;i<=n;i++){
 			auto k=id.lower_bound(mp[cont[i]]);
-			if(id.empty()){
-				id.insert(mp[cont[i]]);
-			}
-			else if(k==id.end()){
+			if(k==id.end()){
 				int lb=*(--id.end());
 				if(abs(mp2[lb]-cont[i])>r){
 					id.insert(mp[cont[i]]);
