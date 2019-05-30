@@ -15,19 +15,17 @@ using namespace std;
 
 int main(){
 	int n;
-	int f = 0;
-	string s;
-	cin >> s;
-	n = s.size();
-	int pos=0,nxt = 0;
-	string g="heidi";
-	while(pos<5&&nxt < n){
-		if(s[pos] == g[nxt]){
-			nxt++,pos++;
+	while(cin >> n){
+		int Min=1e9;
+		f(n){
+			int add;
+			cin >> add;
+			if(i==0||i==n-1){
+				Min=min(Min,add/(n-1));
+			}
+			else
+				Min=min({Min,add/(i-0),add/(n-1-i)});
 		}
-		else{
-			pos ++;
-		}
+		cout << Min << endl;
 	}
-	cout<<(nxt>=5?"YES":"NO")<<endl;
 }

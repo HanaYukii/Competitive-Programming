@@ -15,19 +15,19 @@ using namespace std;
 
 int main(){
 	int n;
-	int f = 0;
-	string s;
-	cin >> s;
-	n = s.size();
-	int pos=0,nxt = 0;
-	string g="heidi";
-	while(pos<5&&nxt < n){
-		if(s[pos] == g[nxt]){
-			nxt++,pos++;
+	while(cin >> n){
+		int now=0;
+		f(n){
+			char c;
+			cin >> c;
+			if(c=='+'){
+				now++;
+			}
+			else{
+				now--;
+				if(now<0)now=0;
+			}
 		}
-		else{
-			pos ++;
-		}
+		cout << now << endl;
 	}
-	cout<<(nxt>=5?"YES":"NO")<<endl;
 }

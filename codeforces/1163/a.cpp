@@ -14,20 +14,22 @@ using namespace std;
 #define pii pair<int,int>
 
 int main(){
-	int n;
-	int f = 0;
-	string s;
-	cin >> s;
-	n = s.size();
-	int pos=0,nxt = 0;
-	string g="heidi";
-	while(pos<5&&nxt < n){
-		if(s[pos] == g[nxt]){
-			nxt++,pos++;
+	int n,m;
+	while(cin >> n >> m){
+		if(m==0){
+			cout<<1<<endl;
+		}
+		else if(n==m){
+			cout<<0<<endl;
 		}
 		else{
-			pos ++;
+			int mx=n/2;
+			if(m<=mx){
+				cout<<m<<endl;
+			}
+			else{
+				cout<<n-m<<endl;
+			}
 		}
 	}
-	cout<<(nxt>=5?"YES":"NO")<<endl;
 }

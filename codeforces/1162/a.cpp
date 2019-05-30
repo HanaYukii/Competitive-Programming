@@ -14,20 +14,23 @@ using namespace std;
 #define pii pair<int,int>
 
 int main(){
-	int n;
-	int f = 0;
-	string s;
-	cin >> s;
-	n = s.size();
-	int pos=0,nxt = 0;
-	string g="heidi";
-	while(pos<5&&nxt < n){
-		if(s[pos] == g[nxt]){
-			nxt++,pos++;
+	int n,m,h;
+	while(cin >> n >> h >> m){
+		int cont[n+5] ={};
+		f1(n){
+			cont[i]=h;
 		}
-		else{
-			pos ++;
+		f(m){
+			int l,r,c;
+			cin >> l >> r >> c;
+			fr(j,l,r+1){
+				cont[j]=min(cont[j],c);
+			}
 		}
+		int sum = 0;
+		f1(n){
+			sum += cont[i]*cont[i];
+		}
+		cout << sum <<endl;
 	}
-	cout<<(nxt>=5?"YES":"NO")<<endl;
 }
