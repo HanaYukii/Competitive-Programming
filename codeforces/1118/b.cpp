@@ -11,24 +11,40 @@ ll pree[200005];
 int main(){
 	int n;
     while(cin>>n){
-    	f1(n){
-    		int add;
-    		cin>>add;
-    		if(i&1){
-    			preo[i]=preo[i-1]+add;
-    			pree[i]=pree[i-1];
-    		}
-    		else{
-    			pree[i]=pree[i-1]+add;
-    			preo[i]=preo[i-1];
-    		}
-    	}
-    	int cnt=0;
-    	f1(n){
-    		if(pree[i-1]-pree[0]+preo[n]-preo[i]==preo[i-1]-preo[0]+pree[n]-pree[i]){
-    			cnt++;
-    		}
-    	}
-    	cout<<cnt<<endl;
+    	int cont[n+5] = {};
+        int sufo[n+5] = {};
+        int sufe[n+5] = {};
+        int preo[n+5] = {};
+        int pree[n+5] = {};
+        f1(n){
+            cin >> cont[i];
+        }
+        preo[1] = cont[1];
+        for(int i = 2 ; i <= n ; i++){
+            if(i&1){
+                preo[i] = preo[i-1] + cont[i];
+                pree[i] = pree[i-1];
+            }
+            else{
+                pree[i] = pree[i-1] + cont[i];
+                preo[i] = preo[i-1];
+            }
+        }
+        for(int i = n ; i >= 1 ; i--){
+            if(i&1){
+                sufo[i] = sufo[i+1] + cont[i];
+                sufe[i] = sufe[i+1];
+            }
+            else{
+                sufe[i] = sufe[i+1] + cont[i];
+                sufo[i] = sufo[i+1];
+            }
+        }
+        int ans = 0;
+        f1(n){
+            if(pree[i-1]+sufo[i+1]==preo[i-1]+sufe[i+1])ans++;
+            //cout << pree[i-1] <<' '<<sufo[i+1]<<' '<<preo[i-1]<<' '<<sufe[i+1]<<endl;
+        }
+        cout << ans << endl;
     }
 }

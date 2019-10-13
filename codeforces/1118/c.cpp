@@ -1,137 +1,89 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
+ 
+#define pb push_back
 #define ll long long
+#define maxn 100005
 #define fr(i,j,k) for(int i=j;i<k;i++)
 #define f(n) fr(i,0,n)
 #define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,-1,sizeof(i));
-#define pb push_back
+#define ms(i) memset(i,0,sizeof(i));
+#define ms1(i) memset(i,-1,sizeof(i));
+#define F first
+#define S second
+#define pii pair<int,int>
 int main(){
 	int n;
     while(cin>>n){
-    	map<int,int>mp;
-        int board[n+5][n+5]={};
-        f1(n*n){
+    	set<pair<int,int> >st;
+        int ans[n+5][n+5] = {};
+        map<int,int>mp;
+        f(n*n){
             int add;
-            cin>>add;
+            cin >> add;
             mp[add]++;
         }
-        if(n==1){
-            cout<<"YES"<<endl;
-            auto it=*(mp.begin());
-            cout<<it.first<<endl;
-            exit(0);
+        for(auto i:mp){
+            st.insert({i.S,i.F});
         }
-        //int sig=0,db=0;
-        vector<int>sig;
-        vector<int>db;
-        vector<int>four;
-        for (auto i:mp){
-            if(i.second&1){
-                sig.pb(i.first);
-                mp[i.first]--;
-            }
-            if(i.second%4==2){
-                db.pb(i.first);
-                mp[i.first]-=2;
-            }
-            for(int j=0;j<i.second/4;j++){
-                four.pb(i.first);
-            }
-            
-        }
-        //cout<<endl;
-        //cout<<four[0]<<' '<<four[1]<<endl;
         if(n%2==0){
-            if(sig.size()||db.size()){
-                cout<<"NO"<<endl;
-            }
-            else{
-                int now=0;
-                cout<<"YES"<<endl;
-                f1(n/2){
-                    fr(j,1,n/2+1){
-                        int z=four[now++];
-                        board[i][j]=z;
-                        board[i][n+1-j]=z;
-                        board[n+1-i][j]=z;
-                        board[n+1-i][n+1-j]=z;
+            for(int i=1;i<=n/2;i++){
+                for(int j=1;j<=n/2;j++){
+                    pii cur = *(--(st.end()));
+                    st.erase(cur);
+                    if(cur.F<4){
+                        cout<<"NO"<<endl;
+                        exit(0);
                     }
-                }
-                f1(n){
-                    fr(j,1,n+1){
-                        cout<<board[i][j]<<' ';
-                    }
-                    cout<<endl;
+                    ans[i][j]=ans[n+1-i][j]=ans[i][n+1-j]=ans[n+1-i][n+1-j] = cur.S;
+                    cur.F -=4;
+                    st.insert(cur);
                 }
             }
         }
         else{
-            if(sig.size()!=1||(int)db.size()>n/2*2||(int)db.size()&1){
-                cout<<"NO"<<endl;
+            for(int i=1;i<=n/2;i++){
+                for(int j=1;j<=n/2;j++){
+                    pii cur = *(--(st.end()));
+                    st.erase(cur);
+                    if(cur.F<4){
+                        cout<<"NO"<<endl;
+                        exit(0);
+                    }
+                    ans[i][j]=ans[n+1-i][j]=ans[i][n+1-j]=ans[n+1-i][n+1-j] = cur.S;
+                    cur.F -=4;
+                    st.insert(cur);
+                }
             }
-            else{
-                cout<<"YES"<<endl;
-                board[n/2+1][n/2+1]=sig[0];
-                int cnt=1;
-                //cout<<"gg"<<endl;
-                for(auto i:db){
-                    if(cnt<=n/2){
-                        board[cnt][n/2+1]=i;
-                        board[n+1-cnt][n/2+1]=i;
-                    }
-                    else{
-                        board[n/2+1][cnt-n/2]=i;
-                        board[n/2+1][n+1-(cnt-n/2)]=i;
-                    }
-                    cnt++;
+            for(int i=1;i<=n/2;i++){
+                pii cur = *(--(st.end()));
+                st.erase(cur);
+                if(cur.F<2){
+                    cout<<"NO"<<endl;
+                    exit(0);
                 }
-                //cout<<"gg"<<endl;
-                int now=0;
-                for(int i=cnt;i<n-1;i+=2){
-                    int k=four[now++];
-                    //cout<<k<<' '<<cnt<<endl;
-                    if(cnt<=n/2){
-                        board[cnt][n/2+1]=k;
-                        board[n+1-cnt][n/2+1]=k;
-                        //cnt++;
-                    }
-                    else{
-                        board[n/2+1][cnt-n/2]=k;
-                        board[n/2+1][n+1-(cnt-n/2)]=k;
-                        //cnt++;
-                    }
-                    cnt++;
-                    if(cnt<=n/2){
-                        board[cnt][n/2+1]=k;
-                        board[n+1-cnt][n/2+1]=k;
-                    }
-                    else{
-                        board[n/2+1][cnt-n/2]=k;
-                        board[n/2+1][n+1-(cnt-n/2)]=k;
-                        
-                    }
-                    cnt++;
+                ans[i][n/2+1]=ans[n+1-i][n/2+1] = cur.S;
+                cur.F -= 2;
+                st.insert(cur);
+                cur = *(--(st.end()));
+                st.erase(cur);
+                if(cur.F<2){
+                    cout<<"NO"<<endl;
+                    exit(0);
                 }
-                //cout<<"gg"<<endl;
-                f1(n/2){
-                    fr(j,1,n/2+1){
-                        int z=four[now++];
-                        board[i][j]=z;
-                        board[i][n+1-j]=z;
-                        board[n+1-i][j]=z;
-                        board[n+1-i][n+1-j]=z;
-                    }
-                }
-                //cout<<"gg"<<endl;
-                f1(n){
-                    fr(j,1,n+1){
-                        cout<<board[i][j]<<' ';
-                    }
-                    cout<<endl;
-                }
-                
+                ans[n/2+1][i]=ans[n/2+1][n+1-i] = cur.S;
+                cur.F -= 2;
+                st.insert(cur);
             }
+            pii cur = *(--(st.end()));
+            ans[n/2+1][n/2+1] = cur.S;
+        }
+        cout << "YES" << endl;
+        f1(n){
+            fr(j,1,n+1){
+                cout << ans[i][j]<<' ';
+            }
+            cout << endl;
         }
     }
 }

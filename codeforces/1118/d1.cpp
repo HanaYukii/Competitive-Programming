@@ -9,32 +9,38 @@ using namespace std;
 int main(){
 	int n,m;
     while(cin>>n>>m){
-    	int ans=0;
-    	int can=0;
-    	vector<ll>cont(n);
-    	f(n)cin>>cont[i];
-    	//cout<<"gg"<<endl;
-    	sort(cont.begin(),cont.end());
-    	reverse(cont.begin(),cont.end());
-    	for(int i=1<<20;i;i>>=1){
-    		//cout<<"gg"<<endl;
-    		if(ans+i<=n){
-    			//int f=0;
-    			//cout<<"gg"<<endl;
-    			ll cnt=0;
-    			for(int j=0;j<n;j++){
-    				cnt+=max(0LL,cont[j]-j/(ans+i));
-    			}
-    			//cout<<ans+i<<' '<<cnt<<endl;
-    			if(cnt<m){
-    				ans+=i;
-    			}
-    			else{
-    				can=1;
-    			}
-    		}
-    	}
-    	if(!can)cout<<-1<<endl;
-    	else cout<<ans+1<<endl;
+    	vector<ll>v;
+        ll sum = 0;
+        f(n){
+            int add;
+            cin >> add;
+            v.pb(add);
+            sum += add;
+        }
+        if(sum<m){
+            cout<<-1<<endl;
+            exit(0);
+        }
+        sort(v.begin(),v.end());
+        reverse(v.begin(),v.end());
+        int mi = 0;
+        for(int i=1<<20;i;i>>=1){
+            int now = n - mi - i;
+            if(now<=0){
+                continue;
+            }
+            ll cur = 0;
+            int mis = -1;
+            for(int j=0;j<n;j++){
+                if(j%now==0){
+                    mis++;
+                }
+                cur += max(v[j]-mis,0LL);
+            }
+            if(cur>=m){
+                mi += i;
+            }
+        }
+        cout << n - mi << endl;
     }
 }

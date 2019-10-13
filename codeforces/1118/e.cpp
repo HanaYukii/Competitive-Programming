@@ -10,36 +10,23 @@ using namespace std;
 #define ms(i) memset(i,0,sizeof(i));
 const int mod=1e9+7;
 int main(){
-	int n,m;
-	while(cin>>n>>m){
-		ll cnt=0;
-		for(int i=m-1;i>0;i--){
-			cnt+=i;
-		}
-		cnt<<=1;
-		if(cnt<n){
+	ll n,m;
+	while(cin>>m>>n){
+		ll ans = n*(n-1);
+		if(ans<m){
 			cout<<"NO"<<endl;
+			exit(0);
 		}
-		else{
-			cout<<"YES"<<endl;
-			cnt=0;
-			int gp=1;
-			while(1){
-				for(int i=1;i<=m-gp;i++){
-					cout<<i<<' '<<i+gp<<endl;
-					cnt++;
-					if(cnt==n){
-						exit(0);
-					}
-				}
-				for(int i=m-gp;i>=1;i--){
-					cout<<i+gp<<' '<<i<<endl;
-					cnt++;
-					if(cnt==n){
-						exit(0);
-					}
-				}
-				gp++;
+		int aaa;
+		cout<<"YES"<<endl;
+		for(int i=1;i<n;i++){
+			for(int j=i+1;j<=n;j++){
+				cout<<i<<' '<<j<<'\n';
+				m--;
+				if(!m)exit(0);
+				cout<<j<<' '<<i<<'\n';
+				m--;
+				if(!m)exit(0);
 			}
 		}
 	}

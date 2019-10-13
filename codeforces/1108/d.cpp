@@ -14,133 +14,55 @@ const ll mod=1e9+7;
 int main(void){
 	ios_base::sync_with_stdio(false);
 	int n;
-	while(cin>>n){
+	while(cin >> n){
+		int dp[n+5][3] = {};
+		int pre[n+5][3] = {};
+		f1(n){
+			fr(j,0,3){
+				dp[i][j] = 1e9;
+			}
+		}
+		string c ="RGB";
 		string s;
-		cin>>s;
-		pair<int,int>dp[205][3];
-		if(s[0]=='R'){
-			dp[0][0].first=0;
-			dp[0][1].first=1;
-			dp[0][2].first=1;
-		}
-		else if(s[0]=='G'){
-			dp[0][0].first=1;
-			dp[0][1].first=0;
-			dp[0][2].first=1;
-		}
-		else{
-			dp[0][0].first=1;
-			dp[0][1].first=1;
-			dp[0][2].first=0;
-		}
-		for(int i=1;i<n;i++){
-			if(s[i]=='R'){
-				if(dp[i-1][1].first<dp[i-1][2].first){
-					dp[i][0].first=dp[i-1][1].first;
-					dp[i][0].second=1;
+		cin >> s;
+		s = " "+s;
+		f1(n){
+			fr(j,0,3){
+				if(s[i]==c[j]){
+					fr(k,0,3){
+						if(k==j)continue;
+						if(dp[i-1][k]<dp[i][j]){
+							dp[i][j] = dp[i-1][k];
+							pre[i][j] = k;
+						}
+					}
 				}
 				else{
-					dp[i][0].first=dp[i-1][2].first;
-					dp[i][0].second=2;
-				}
-				if(dp[i-1][0].first<dp[i-1][2].first){
-					dp[i][1].first=dp[i-1][0].first+1;
-					dp[i][1].second=0;
-				}
-				else{
-					dp[i][1].first=dp[i-1][2].first+1;
-					dp[i][1].second=2;
-				}
-				if(dp[i-1][0].first<dp[i-1][1].first){
-					dp[i][2].first=dp[i-1][0].first+1;
-					dp[i][2].second=0;
-				}
-				else{
-					dp[i][2].first=dp[i-1][1].first+1;
-					dp[i][2].second=1;
-				}
-			}
-			else if(s[i]=='G'){
-				if(dp[i-1][1].first<dp[i-1][2].first){
-					dp[i][0].first=dp[i-1][1].first+1;
-					dp[i][0].second=1;
-				}
-				else{
-					dp[i][0].first=dp[i-1][2].first+1;
-					dp[i][0].second=2;
-				}
-				if(dp[i-1][0].first<dp[i-1][2].first){
-					dp[i][1].first=dp[i-1][0].first;
-					dp[i][1].second=0;
-				}
-				else{
-					dp[i][1].first=dp[i-1][2].first;
-					dp[i][1].second=2;
-				}
-				if(dp[i-1][0].first<dp[i-1][1].first){
-					dp[i][2].first=dp[i-1][0].first+1;
-					dp[i][2].second=0;
-				}
-				else{
-					dp[i][2].first=dp[i-1][1].first+1;
-					dp[i][2].second=1;
-				}
-			}
-			else{
-				if(dp[i-1][1].first<dp[i-1][2].first){
-					dp[i][0].first=dp[i-1][1].first+1;
-					dp[i][0].second=1;
-				}
-				else{
-					dp[i][0].first=dp[i-1][2].first+1;
-					dp[i][0].second=2;
-				}
-				if(dp[i-1][0].first<dp[i-1][2].first){
-					dp[i][1].first=dp[i-1][0].first+1;
-					dp[i][1].second=0;
-				}
-				else{
-					dp[i][1].first=dp[i-1][2].first+1;
-					dp[i][1].second=2;
-				}
-				if(dp[i-1][0].first<dp[i-1][1].first){
-					dp[i][2].first=dp[i-1][0].first;
-					dp[i][2].second=0;
-				}
-				else{
-					dp[i][2].first=dp[i-1][1].first;
-					dp[i][2].second=1;
+					fr(k,0,3){
+						if(k==j)continue;
+						if(dp[i-1][k]+1<dp[i][j]){
+							dp[i][j] = dp[i-1][k] + 1;
+							pre[i][j] = k;
+						}
+					}
 				}
 			}
 		}
-		cout<<min({dp[n-1][2].first,dp[n-1][1].first,dp[n-1][0].first})<<endl;
 		string ans;
-		int last;
-		if(min({dp[n-1][2].first,dp[n-1][1].first,dp[n-1][0].first})==dp[n-1][0].first){
-			ans+="R";
-			last=0;
-		}
-		else if(min({dp[n-1][2].first,dp[n-1][1].first,dp[n-1][0].first})==dp[n-1][1].first){
-			ans+="G";
-			last=1;
-		}
-		else{
-			ans+="B";
-			last=2;
-		}
-		for(int i=n-1;i>0;i--){
-			if(dp[i][last].second==0){
-				ans+="R";
+		int num =1e9;
+		int idx = 0;
+		f(3){
+			if(dp[n][i]<num){
+				num = dp[n][i];
+				idx = i;
 			}
-			else if(dp[i][last].second==1){
-				ans+="G";
-			}
-			else{
-				ans+="B";
-			}
-			last=dp[i][last].second;
+		}
+		for(int i=n;i>=1;i--){
+			ans += c[idx];
+			idx = pre[i][idx];
 		}
 		reverse(ans.begin(),ans.end());
-		cout<<ans<<endl;
+		cout << num << endl;
+		cout << ans << endl;
 	}
 }
