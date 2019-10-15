@@ -3,84 +3,111 @@ using namespace std;
 
 #define pb push_back
 #define ll long long
-#define maxn 300005
+#define maxn 500005
 #define fr(i,j,k) for(int i=j;i<k;i++)
 #define f(n) fr(i,0,n)
 #define f1(n) fr(i,1,n+1)
 #define ms(i) memset(i,0,sizeof(i));
-int lay[maxn];
-ll odd[maxn];
-ll even[maxn];
 int L[maxn],R[maxn];
 vector<int>g[maxn];
 int cur;
-ll v[maxn];
+int f[maxn<<2];
+int v[maxn<<2];
+int fa[maxn];
 int n;
 void dfs(int now,int pre){
-	L[now] = R[now]=++cur;
-	for(auto i:g[now]){
-		if(i==pre)continue;
-		lay[i] = lay[now] + 1;
-		dfs(i,now);
-		R[now] = max(R[now],R[i]);
-	}
+    L[now] = R[now]=++cur;
+    for(auto i:g[now]){
+        if(i==pre)continue;
+        fa[i] = now;
+        dfs(i,now);
+        R[now] = max(R[now],R[i]);
+    }
 }
-ll query(int x,int tp){
-	ll ret = v[x];
-	x = L[x];
-	while(x){
-		if(tp){
-			ret += odd[x];
-		}
-		else{
-			ret += even[x];
-		}
-		x -= (x) & (-x);
-	}
-	return ret;
+void pushup(int x){
+    v[x] = v[x<<1] && v[x<<1|1];
 }
-void update(int x,ll val){
-	int tp = lay[x] & 1;
-	int LL = L[x];
-	int RR = R[x];
-	if(!tp)val = -val;
-	while(LL<=n){
-		odd[LL] += val;
-		even[LL] -= val;
-		LL += (LL) & (-LL);
-	}
-	while(RR<=n){
-		odd[RR] -= val;
-		even[RR] += val;
-		RR += (RR) & (-RR);
-	}
+void pushdown(int x){
+    if(f[x]){
+        f[x<<1] = 1;
+        v[x<<1] = 1;
+        f[x<<1|1] = 1;
+        v[x<<1|1] = 1;
+        f[x] = 0;
+    }
 }
+void update(int x,int l,int r,int ql,int qr){
+    if(ql<=l&&qr>=r){
+        v[x] = f[x] = 1;
+        return ;
+    }
+    pushdown(x);
+    int mid = (l+r) >> 1;
+    if(ql<=mid)
+        update(x<<1,l,mid,ql,qr);
+    if(qr>mid)
+        update(x<<1|1,mid+1,r,ql,qr);
+    pushup(x);
+}
+void update2(int x,int l,int r,int pos){
+    if(l==r){
+        v[x] = 0;
+        return;
+    }
+    pushdown(x);
+    int mid = (l+r) >> 1;
+    if(pos <= mid){
+        update2(x<<1,l,mid,pos);
+    }
+    else{
+        update2(x<<1|1,mid+1,r,pos);
+    }
+    pushup(x);
+}
+int query(int x,int l,int r,int ql,int qr){
+    if(ql<=l&&qr>=r){
+        return v[x];
+    }
+    int mid = (l+r) >> 1;
+    int ret = 1;
+    pushdown(x);
+    if(ql<=mid){
+        ret =  ret && query(x<<1,l,mid,ql,qr);
+    }
+    if(qr>mid){
+        ret = ret && query(x<<1|1,mid+1,r,ql,qr);
+    }
+    pushup(x);
+    return ret;
+}
+
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     int m;
-    while(cin >> n >> m){
-    	f1(n)cin >> v[i];
-	    f(n-1){
-	    	int add1,add2;
-	    	cin >> add1 >> add2;
-	    	g[add1].pb(add2);
-	    	g[add2].pb(add1);
-	    }
-	    cur = 0;
-	    dfs(1,0);
-	    f1(n)R[i]++;
-	    while(m--){
-	    	int op,tar;
-	    	cin >> op >> tar;
-	    	if(op==2){
-	    		cout<<query(tar,lay[tar]&1)<<'\n';
-	    	}
-	    	else{
-	    		int v;
-	    		cin >> v;
-	    		update(tar,v);
-	    	}
-	    }
-	}
+    while(cin >> n){
+        f(n-1){
+            int add1,add2;
+            cin >> add1 >> add2;
+            g[add1].pb(add2);
+            g[add2].pb(add1);
+        }
+        cur = 0;
+        dfs(1,0);
+        cin >> m;
+        while(m--){
+            int op,k;
+            cin >> op >> k;
+            if(op == 1){
+                if(!query(1,1,n,L[k],R[k])&&fa[k])update2(1,1,n,L[fa[k]]);
+                update(1,1,n,L[k],R[k]);
+            }
+            else if(op==2){
+                update2(1,1,n,L[k]);
+            }
+            else{
+                cout<<query(1,1,n,L[k],R[k])<<'\n';
+            }
+        }
+    }
 }

@@ -44,22 +44,21 @@ void tarjan(int now){
 	}
 }
 bool check(){
-	for(int i=4;i<=4*n+3;i++){
-		if(!nd[i/4])continue;
+	for(int i=0;i<4*n;i++){
 		if(!dfn[i]){
 			tarjan(i);
 		}
 	}
-	for(int i=4;i<4*n+3;i+=2){
-		if(!nd[i/4])continue;
+	for(int i=0;i<4*n;i+=2){
+		//cout<<fa[i]<<' '<<fa[i+1]<<endl;
+		if(fa[i]==fa[i+1])return 0;
 		opp[fa[i]] = fa[i+1];
 		opp[fa[i+1]] = fa[i];
 	}
 	return 1;
 }
 void build(){
-	for(int i=4;i<=4*n+3;i++){
-		if(!nd[n/4])continue;
+	for(int i=0;i<4*n;i++){
 		int x = fa[i];
 		for(int j=0;j<(int)g[i].size();j++){
 			int y = fa[g[i][j]];
@@ -91,85 +90,87 @@ void topo(){
 			}
 		}
 	}
-	for(int i=1;i<=n;i++){
-		if(!nd[i])cout<<'x';
-		else{
-			if(c[fa[i*4]]==1){
-				cout<<'-';
-			}
-			else if(c[fa[i*4+2]]==1){
-				cout<<'+';
-			}
-			else{
-				cout<<'=';
-			}
+	int cnt = 0;
+	f(n*2){
+		if(c[fa[i*2]]==1)cnt++;
+	}
+	cout << cnt << '\n';
+	f(n){
+		if(c[fa[i*2]]==1){
+			cout<<"row"<<' '<<i<<'\n';
 		}
 	}
-	cout << endl;
+	f(n){
+		if(c[fa[(n+i)*2]]==1){
+			cout<<"col"<<' '<<i<<'\n';
+		}
+	}
 }
-struct op
-{
-	int add1,add2;
-	string tp;
-};
-vector<op>v;
+
 int main(){
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	while(cin >> n >> m && n){
-		f(m){
-			int add1,add2;
-			string s;
-			cin >> add1 >> add2 >> s;
-			if(s!="x"){
-				nd[add1] = nd[add2] = 1;
-				v.pb({add1,add2,s});
-			}
-			
+	while(cin >> n){
+		string s1[n],s2[n],ss;
+		f(n){
+			cin >> s1[i];
 		}
-		for(auto i:v){
-			int add1 = i.add1;
-			int add2 = i.add2;
-			//  *4 + 0 = 0.5 true
-			//  *4 + 1 = 0.5 false
-			//  *4 + 2 = 2 true
-			//  *4 + 3 = 2 false
-			string tp = i.tp;
-			if(tp=="+"){
-				g[add1*4].pb(add1*4+1);
-				g[add2*4].pb(add2*4+1);
-				g[add1*4+3].pb(add2*4+2);
-				g[add2*4+3].pb(add1*4+2);
-			}
-			else if(tp=="-"){
-				g[add1*4+2].pb(add1*4+3);
-				g[add2*4+2].pb(add2*4+3);
-				g[add1*4+1].pb(add2*4);
-				g[add2*4+1].pb(add1*4);
-			}
-			else{
-				g[add1*4].pb(add2*4+2);
-				g[add2*4].pb(add1*4+2);
-				g[add1*4+2].pb(add2*4);
-				g[add2*4+2].pb(add1*4);
-				g[add1*4+1].pb(add2*4+3);
-				g[add2*4+1].pb(add1*4+3);
-				g[add1*4+3].pb(add2*4+1);
-				g[add2*4+3].pb(add1*4+1);
-			}
+		f(n){
+			cin >> s2[i];
 		}
-		//  *4 + 0 = 0.5 true
-		//  *4 + 1 = 0.5 false
-		//  *4 + 2 = 2 true
-		//  *4 + 3 = 2 false
-		f1(n){
-			if(!nd[i])continue;
-			g[i*4].pb(i*4+3);
-			g[i*4+2].pb(i*4+1);
+		cin >> ss;
+		f(n){
+			fr(j,0,n){
+				int ch = 0;
+				if(s1[i][j]!=s2[i][j])ch = 1;
+				int chi = 0;
+				if(ss[j]=='1'){
+					chi = 1;
+				}
+				int chj = 0;
+				if(ss[i]=='1'){
+					chj = 1;
+				}
+				if(ch==1&&chi==0&&chj==0){
+					cout<<-1<<endl;
+					exit(0);
+				}
+				if(ch==1){
+					if(chi==1&&chj==1){
+						g[i*2].pb((n+j)*2+1);
+						g[i*2+1].pb((n+j)*2);
+						g[(n+j)*2+1].pb(i*2);
+						g[(n+j)*2].pb(i*2+1);
+					}
+					else if(chi){
+						g[i*2+1].pb(i*2);
+					}
+					else{
+						g[(n+j)*2+1].pb((n+j)*2);
+					}
+				}
+				else{
+					if(chi==1&&chj==1){
+						g[i*2].pb((n+j)*2);
+						g[(n+j)*2].pb(i*2);
+						g[i*2+1].pb((n+j)*2+1);
+						g[(n+j)*2+1].pb(i*2+1);
+					}
+					else if(chi){
+						g[i*2].pb(i*2+1);
+					}
+					else if(chj){
+						g[(n+j)*2].pb((n+j)*2+1);
+					}
+				}
+			}
 		}
 		if(check()){
 			build();
 			topo();
+		}
+		else{
+			cout<<-1<<endl;
 		}
 	}
 }
