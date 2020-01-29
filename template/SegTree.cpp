@@ -24,17 +24,17 @@ void build(int x,int l,int r){
 	build(x<<1|1,mid+1,r);
 	pushup(idx);
 }
-void update(int idx,int l,int r,int x,int del){
+void update(int x,int l,int r,int p,int del){
 	if(l==r){
 		sum[x] += del;
 		return ;
 	}
 	int mid = (l+r) >> 1;
-	if(x <= mid){
-		update(x<<1,l,mid,x);
+	if(p <= mid){
+		update(x<<1,l,mid,p,del);
 	}
 	else{
-		update(x<<1|1,mid+1,r,x);
+		update(x<<1|1,mid+1,r,p,del);
 	}
 	pushup(x);
 }
