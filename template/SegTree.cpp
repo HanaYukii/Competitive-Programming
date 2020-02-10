@@ -22,7 +22,7 @@ void build(int x,int l,int r){
 	int mid = (l+r) >> 1;
 	build(x<<1,l,mid);
 	build(x<<1|1,mid+1,r);
-	pushup(idx);
+	pushup(x);
 }
 void update(int x,int l,int r,int p,int del){
 	if(l==r){
