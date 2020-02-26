@@ -1,29 +1,31 @@
-nclude<bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
+ 
 #define pb push_back
 #define ll long long
-#define maxn 300005
 #define fr(i,j,k) for(int i=j;i<k;i++)
 #define f(n) fr(i,0,n)
 #define f1(n) fr(i,1,n+1)
 #define ms(i) memset(i,0,sizeof(i));
 #define ms1(i) memset(i,-1,sizeof(i));
+#define pll pair<ll,ll>
+#define pii pair<int,int>
 #define F first
 #define S second
-#define double long double
-const int mod = 1e9+7;
+const int maxn = 2e5 + 5;
+const int mod = 1e9 + 7;
 
 int pa[200005][20];
 vector<int>g[200005];
-int sz[200005];
 int dep[200005];
-void dfs(int x){
-    sz[x] = 1;
-    for(auto i:g[x]){
-        dep[i] = dep[x] + 1;
-        dfs(i);
-        sz[x] += sz[i];
+void dfs(int now, int pre){
+    pa[now][0] = pre;
+    for(auto i:g[now]){
+        if (i == pre) {
+            continue;
+        }
+        dep[i] = dep[now] + 1;
+        dfs(i, now);
     }
 }
 int lca(int x,int y){
@@ -46,19 +48,43 @@ int lca(int x,int y){
     }
     return pa[x][0];
 }
+int dis(int x,int y) {
+    return dep[x] + dep[y] - 2 * dep[lca(x, y)];
+}
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     int n;
     cin >> n;
-    f1(n){
-        cin >> pa[i][0];
-        g[pa[i][0]].pb(i);
+    f(n - 1) {
+        int add1, add2;
+        cin >> add1 >> add2;
+        g[add1].pb(add2);
+        g[add2].pb(add1);
     }
+    dfs(1,1);
     f1(19){
         fr(j,1,n+1){
             pa[j][i] = pa[pa[j][i-1]][i-1];
         }
     }
-    dfs(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        int x, y, a, b, k;
+        cin >> x >> y >> a >> b >> k;
+        //cout << dis(a, b) << '\n';
+        if (dis(a, b) <= k && (k - dis(a, b)) % 2 == 0) {
+            cout << "YES\n";
+        }
+        else if (dis(a, x) + dis(y, b) + 1 <= k && (k - dis(a, x) - dis(y, b)) % 2 == 1) {
+            cout << "YES\n";
+        }
+        else if (dis(a, y) + dis(x, b) + 1 <= k && (k - dis(a, y) - dis(x, b)) % 2 == 1) {
+            cout << "YES\n";
+        }
+        else {
+            cout << "NO\n";
+        }
+    }
 }  
