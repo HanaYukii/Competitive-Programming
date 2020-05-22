@@ -80,23 +80,4 @@ int main(){
             pa[j][i] = pa[pa[j][i-1]][i-1];
         }
     }
-    int t;
-    cin >> t;
-    while (t--) {
-        int x, y, a, b, k;
-        cin >> x >> y >> a >> b >> k;
-        //cout << dis(a, b) << '\n';
-        if (dis(a, b) <= k && (k - dis(a, b)) % 2 == 0) {
-            cout << "YES\n";
-        }
-        else if (dis(a, x) + dis(y, b) + 1 <= k && (k - dis(a, x) - dis(y, b)) % 2 == 1) {
-            cout << "YES\n";
-        }
-        else if (dis(a, y) + dis(x, b) + 1 <= k && (k - dis(a, y) - dis(x, b)) % 2 == 1) {
-            cout << "YES\n";
-        }
-        else {
-            cout << "NO\n";
-        }
-    }
 }  
