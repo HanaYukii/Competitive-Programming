@@ -51,6 +51,18 @@ int lca(int x,int y){
 int dis(int x,int y) {
     return dep[x] + dep[y] - 2 * dep[lca(x, y)];
 }
+int getpa(int x, int k) {
+    int cur = x;
+    int i = 0;
+    while (k) {
+        if (k & 1) {
+            cur = pa[cur][i];
+        }
+        k >>= 1;
+        i++;
+    }
+    return cur;
+}
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
