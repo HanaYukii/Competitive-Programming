@@ -1,55 +1,53 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-#define pb push_back
-#define ll long long
-#define maxn 300005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-#define F first
-#define S second
-set<int>st[maxn];
-vector<pair<int,int> >ans;
-void dfs(int now){
-    while(st[now].size()){
-        int nxt = *st[now].begin();
-        st[nxt].erase(now);
-        st[now].erase(nxt);
-        ans.pb({now,nxt});
-        dfs(nxt);
+int n;
+multiset<int>g[505];
+vector<int>ans;
+void dfs(int now) {
+    while (g[now].size()) {
+        int x = *g[now].begin();
+        g[now].erase(g[now].lower_bound(x));
+        g[x].erase(g[x].lower_bound(now));
+        dfs(x);
     }
+    ans.push_back(now);
+}
+void solve() {
+    ans.clear();
+    f1(500) {
+        g[i].clear();
+    }
+    f(n) {
+        int x, y;
+        cin >> x >> y;
+        g[x].insert(y);
+        g[y].insert(x);
+    }
+    int x = 0, y = 0;
+    f1(500) {
+        if (g[i].size() % 2 == 1) {
+            if (x == 0) {
+                x = i;
+            }
+            else {
+                y = i;
+            }
+        } 
+    }
+    if (!x) {
+        dfs(1);
+    }
+    else {
+        dfs(min(x, y));
+    }
+    reverse(all(ans));
+    for (auto &i : ans) {
+        cout << i << '\n';
+    }
+    cout << '\n';
 }
 int main(){
-    int t;
-    cin >> t;
-    while(t--){
-        int n, m;
-        ans.clear();
-        cin >> n >> m;
-        for(int i = 0 ; i < m ; i++){
-            int x, y;
-            cin >> x >> y;
-            st[x].insert(y);
-            st[y].insert(x);
-        }
-        for(int i = 1 ; i <= n ; i++){
-            if(st[i].size() & 1){
-                st[n+1].insert(i);
-                st[i].insert(n+1);
-            }
-        }
-        cout << n - st[n+1].size() << '\n';
-        for(int i = 1 ; i <= n ; i++){
-            dfs(i);
-        }
-        for(auto i:ans){
-            if(i.F == n + 1 || i.S == n + 1){
-                continue;
-            }
-            cout << i.F <<' '<<i.S << '\n';
-        }
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    while (cin >> n && n) {
+        solve();
     }
 }
