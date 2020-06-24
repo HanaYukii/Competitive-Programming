@@ -43,4 +43,9 @@ void solve() {
             tarjan(i);
         }
     }
+    cout << scc << '\n';
+    f1(n) {
+        cout << pa[i] << ' ';
+    }
+    cout << '\n';
 }
