@@ -1,12 +1,7 @@
 struct mat {
-    LL a[2][2];
+    ll a[2][2];
     mat() {
-        memset( a, 0, sizeof( a ) );
-    }
-    mat( LL x ) {
-        a[0][0] = a[1][0] = 1;
-        a[1][1] = 0;
-        a[0][1] = x;
+        memset(a, 0, sizeof(a));
     }
     mat operator * ( const mat &b ) const {
         mat ret;
