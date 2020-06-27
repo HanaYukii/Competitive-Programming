@@ -25,6 +25,9 @@ void build(int n){
 ll C(int n, int k){
    return pre[n] * prei[k] % mod * prei[n-k] % mod;
 }
+ll P(int n, int k) {
+    return pre[n] * prei[n - k] % mod;
+}
 ll pm(int n,int p){
     ll ret = 1;
     ll now = n;
