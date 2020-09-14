@@ -14,7 +14,6 @@ struct mat {
         return ret;
     }
     mat operator + ( const mat &b ) const {
-        //cout << x <<' '<<b.x<<endl;
         mat ret;
         for( int i = 0; i < x; ++i )
             for( int j = 0; j < 1; ++j )
