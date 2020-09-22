@@ -7,6 +7,7 @@ struct mat {
     }
     mat operator * ( const mat &b ) const {
         mat ret;
+        ret.x = x;
         for( int i = 0; i < x; ++i )
             for( int j = 0; j < x; ++j )
                 for( int k = 0; k < x; ++k )
@@ -15,6 +16,7 @@ struct mat {
     }
     mat operator + ( const mat &b ) const {
         mat ret;
+        ret.x = x;
         for( int i = 0; i < x; ++i )
             for( int j = 0; j < 1; ++j )
                 for( int k = 0; k < x; ++k )
