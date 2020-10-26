@@ -28,6 +28,9 @@ ll C(int n, int k){
 ll P(int n, int k) {
     return pre[n] * prei[n - k] % mod;
 }
+ll catalan(int x) {
+    return C(x * 2, x) * inv[x + 1] % mod;
+}
 ll pm(int n,int p){
     ll ret = 1;
     ll now = n;
@@ -42,6 +45,7 @@ ll pm(int n,int p){
     }
     return ret;
 }
+
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
