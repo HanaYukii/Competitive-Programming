@@ -49,4 +49,13 @@ ll pm(int n,int p){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    int n;
+    cin >> n;
+    build(n); // needed n!
+    int x, y;
+    cin >> x >> y;
+    cout << C(x, y) << '\n'; // C
+    cout << P(x, y) << '\n'; // P
+    cout << catalan(x) << '\n'; // catalan
+    cout << pm(x, y) << '\n'; // x^y % mod
 }

@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+using namespace std;
 vector<int>fail;
 void build(string s) {
     fail.pb(-1);
@@ -32,6 +34,6 @@ int match(string s, string t) {
 void solve() {
     string s, t;
     cin >> s >> t;
-    build(t);
-    cout << match(s, t) << '\n';
+    build(t); // build failure
+    cout << match(s, t) << '\n'; // t appear time in s
 }

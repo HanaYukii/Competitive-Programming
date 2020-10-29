@@ -36,7 +36,7 @@ void build(int x,int l,int r){
     pushup(x);
 }
 void update(int x,int l,int r,int ql,int qr,ll v){
-    if(ql <= l&&qr >= r){
+    if (ql <= l && qr >= r){
         mx[x] += v;
         lz[x] += v;
         return ;
@@ -50,4 +50,8 @@ void update(int x,int l,int r,int ql,int qr,ll v){
         update(x<<1|1, mid + 1, r, ql, qr, v);
     }
     pushup(x);
+}
+
+int main() {
+    // Segment Tree Range add, Range max
 }

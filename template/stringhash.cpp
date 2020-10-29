@@ -14,7 +14,7 @@ using namespace std;
 #define S second
 const int maxn = 1e5 + 5;
 const int mod = 1e9 + 7;
-ll mul = 31;
+ll mul = 114115;
 ll h[maxn];
 ll p[maxn];
  
@@ -22,19 +22,36 @@ void build(string s){
     ll cur = 0;
     ll now = mul;
     p[0] = 1;
-    f1((int)s.size()){
+    for (int i = 1 ; i <= s.size() ; i++){
         p[i] = now;
         now *= mul;
         now %= mod;
     }
-    for(int i = 1 ; i <= (int)s.size() ; i ++){
+    for (int i = 1 ; i <= (int)s.size() ; i ++){
         cur *= mul;
-        cur += (int)s[i-1];
+        cur += s[i-1];
         cur %= mod;
         h[i] = cur;
     }
 }
-ll get(int l,int r){
+ll query(int l,int r){
     ll ret = (h[r] - (h[l-1] * p[r - l + 1] % mod) + mod) % mod;
     return ret;
+}
+
+int main() {
+    // string hash
+    string s;
+    cin >> s;
+    build(s);
+    s = " " + s;
+    int l1, r1, l2, r2;
+    cin >> l1 >> r1 >> l2 >> r2;
+    // string 1-based 
+    if (query(l1, r1) == query(l2, r2)) {
+        cout << "SAME\n";
+    }
+    else {
+        cout << "DIFFERENT\n";
+    }
 }

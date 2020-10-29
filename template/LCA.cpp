@@ -68,16 +68,21 @@ int main(){
     cin.tie(0);
     int n;
     cin >> n;
-    f(n - 1) {
-        int add1, add2;
-        cin >> add1 >> add2;
-        g[add1].pb(add2);
-        g[add2].pb(add1);
+    for (int i = 0 ; i < n - 1 ; i++) {
+        int x, y;
+        cin >> x >> y;
+        g[x].pb(y);
+        g[y].pb(x);
     }
     dfs(1,1);
-    f1(19){
-        fr(j,1,n+1){
+    for(int i = 1 ; i <= 19 ; i++){
+        for (int j = 1 ; j <= n ; j++){
             pa[j][i] = pa[pa[j][i-1]][i-1];
         }
     }
+    int x, y;
+    cin >> x >> y;
+    int L = lca(x, y) // lca
+    int D = dis(x, y) // dis
+    int pa = getpa(x, y) // x's y time parent
 }  

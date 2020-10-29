@@ -1,9 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int mod = 1e9 + 7;
+using ll = long long;
 struct mat {
-    ll a[100][100];
+    vector<vector<long long>>a;
     int x;
     mat() {
-        memset(a, 0, sizeof(a));
+        a.resize(2,vector<ll>(2,0));
         x = 2;
+    }
+    mat(int n) {
+        a.resize(n,vector<ll>(n,0));
+        x = n;
     }
     mat operator * ( const mat &b ) const {
         mat ret;
@@ -24,3 +32,26 @@ struct mat {
         return ret;
     }
 };
+
+int main() {
+    // Matrix power fib
+    //{1,1,2,3,5,8};
+    ll n;
+    while (cin >> n) {
+        mat ans(2);
+        mat mul(2);
+        ans.a[0][0] = 1; // fib 1
+        ans.a[1][0] = 1; // fib 2
+        ll left = n - 1;
+        mul.a[0][1] = 1;
+        mul.a[1][0] = mul.a[1][1] = 1;
+        while (left) {
+            if (left & 1) {
+                ans = mul + ans;
+            }
+            mul = mul * mul;
+            left >>= 1;
+        }
+        cout << ans.a[0][0] << '\n'; // fib n
+    }
+}

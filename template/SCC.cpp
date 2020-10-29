@@ -1,3 +1,6 @@
+#include<bits/stdc++.h>
+using namespace std;
+
 int dfn[200005];
 int low[200005];
 int stk[200005];
@@ -31,21 +34,22 @@ void tarjan(int now) {
     }
 }
 void solve() {
+    // tarjan scc
     int n, m;
     cin >> n >> m;
-    f(m) {
+    for (int i = 0 ; i < m; i++) {
         int x, y;
         cin >> x >> y;
-        g[x].pb(y);
+        g[x].push_back(y);
     }
-    f1(n) {
+    for (int i = 1 ; i <= n ; i++) {
         if (!dfn[i]) {
             tarjan(i);
         }
     }
-    cout << scc << '\n';
-    f1(n) {
-        cout << pa[i] << ' ';
+    cout << scc << '\n'; // scc count
+    for (int i = 1 ; i <= n ; i++) {
+        cout << pa[i] << ' ';// scc number
     }
     cout << '\n';
 }
