@@ -23,7 +23,7 @@ void pushdown(int x){
     lz[x] = 0;
 }
 void pushup(int x){
-    mx[x] = min(mx[x<<1], mx[x<<1|1]);
+    mx[x] = max(mx[x<<1], mx[x<<1|1]);
 }
 void build(int x,int l,int r){
     if(l==r){
@@ -51,7 +51,21 @@ void update(int x,int l,int r,int ql,int qr,ll v){
     }
     pushup(x);
 }
-
+ll query(int x,int l,int r,int ql,int qr){
+    if (ql <= l && qr >= r){
+        return mx[x];
+    }
+    pushdown(x);
+    int mid = (l+r) >> 1;
+    ll mx = -1e18;
+    if(ql <= mid){
+        mx = max(mx, query(x<<1,l,mid,ql,qr));
+    }
+    if(qr > mid){
+        mx = max(mx, query(x<<1|1,mid+1,r,ql,qr));
+    }
+    return mx;
+}
 int main() {
     // Segment Tree Range add, Range max
 }
