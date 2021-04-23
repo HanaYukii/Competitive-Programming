@@ -57,28 +57,22 @@ struct AC
                         int v = node[now].fail;
                         while (v != -1) {
                            if (node[v].nxt[i]) {
-                            //cout << "3"<<' '<<node[i].nxt[i] << endl;
                             node[node[now].nxt[i]].fail = node[v].nxt[i];
                             break;
                            }
                            v = node[v].fail;
                         }
                         if (v == -1) {
-                            //cout << "2"<<' '<<node[i].nxt[i] << endl;
                             node[node[now].nxt[i]].fail = 0;
                         }
                     }
-                    //cout << node[now].nxt[i] << endl;
                     q.push(node[now].nxt[i]);
                 }
             }
-            //cout << now << ' '<< node[now].fail << endl;
-            //system("PAUSE");
         }
     }
     void match(string s) {
         int now = 0;
-        //cout << "???"<<endl;
         for (int i = 0 ; i < s.size() ; i++) {
             int c = s[i] - 'a';
             if (node[now].nxt[c]) {
