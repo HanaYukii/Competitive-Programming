@@ -14,7 +14,7 @@ struct mat {
         x = n;
     }
     mat operator * ( const mat &b ) const {
-        mat ret;
+        mat ret(x);
         ret.x = x;
         for( int i = 0; i < x; ++i )
             for( int j = 0; j < x; ++j )
@@ -23,7 +23,7 @@ struct mat {
         return ret;
     }
     mat operator + ( const mat &b ) const {
-        mat ret;
+        mat ret(x);
         ret.x = x;
         for( int i = 0; i < x; ++i )
             for( int j = 0; j < 1; ++j )
