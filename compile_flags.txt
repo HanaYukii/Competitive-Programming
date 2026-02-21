@@ -1,0 +1,11 @@
+-std=c++17
+-Wall
+--target=x86_64-w64-mingw32
+-isystem
+C:/msys64/ucrt64/include/c++/15.2.0
+-isystem
+C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32
+-isystem
+C:/msys64/ucrt64/include/c++/15.2.0/backward
+-isystem
+C:/msys64/ucrt64/include
