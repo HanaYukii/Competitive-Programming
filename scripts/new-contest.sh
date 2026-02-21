@@ -32,8 +32,8 @@ esac
 
 if [ "$PROBLEMS" -eq 0 ]; then
     case "$PLATFORM_DIR" in
-        codeforces|atcoder) PROBLEMS=7 ;;
-        leetcode)           PROBLEMS=4 ;;
+        codeforces|atcoder) PROBLEMS=1 ;;
+        leetcode)           PROBLEMS=1 ;;
     esac
 fi
 

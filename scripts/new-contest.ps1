@@ -32,9 +32,9 @@ $platformDir = $platformMap[$Platform]
 
 if ($Problems -eq 0) {
     $defaults = @{
-        "codeforces" = 7
-        "atcoder"    = 7
-        "leetcode"   = 4
+        "codeforces" = 1
+        "atcoder"    = 1
+        "leetcode"   = 1
     }
     $Problems = $defaults[$platformDir]
 }
