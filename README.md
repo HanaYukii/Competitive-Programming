@@ -40,7 +40,8 @@
 | [LCA.cpp](template/LCA.cpp) | 最近公共祖先 (Binary Lifting) |
 | [HeavyLight.cpp](template/HeavyLight.cpp) | 重輕鏈剖分 (HLD) |
 | [Centroid.cpp](template/Centroid.cpp) | 重心剖分 |
-| [EulerTour.cpp](template/EulerTour.cpp) | 尤拉序 |
+| [EulerTour.cpp](template/EulerTour.cpp) | 尤拉路徑/迴路（multiset 版） |
+| [EulerCircuit.cpp](template/EulerCircuit.cpp) | 無向圖尤拉迴路（Hierholzer，含邊定向） |
 | [Diameter.cpp](template/Diameter.cpp) | 樹直徑 |
 | [bipartile.cpp](template/bipartile.cpp) | 二分圖匹配 |
 | [Hungarian.cpp](template/Hungarian.cpp) | 匈牙利演算法 |

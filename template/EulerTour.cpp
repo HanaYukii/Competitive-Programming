@@ -1,4 +1,5 @@
-// Euler Tour on tree
+// Euler Path/Circuit on undirected graph (Hierholzer, multiset version)
+// Handles both Euler circuit (all even degree) and Euler path (exactly 2 odd degree)
 int n;
 multiset<int>g[505];
 vector<int>ans;
