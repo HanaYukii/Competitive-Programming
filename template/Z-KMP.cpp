@@ -1,4 +1,5 @@
-//cses 2107
+// Z-function (Z-algorithm)
+// cses 2107
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

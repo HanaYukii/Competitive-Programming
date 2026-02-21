@@ -1,3 +1,4 @@
+// 2-SAT (implication graph + SCC)
 int dfn[200005];
 int low[200005];
 int stk[200005];

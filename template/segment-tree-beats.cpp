@@ -1,4 +1,5 @@
-//Range min, Range sum
+// Segment Tree Beats (Ji Driver Segment Tree)
+// Range min, Range sum
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

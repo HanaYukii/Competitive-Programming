@@ -1,3 +1,4 @@
+// Manacher's algorithm (longest palindromic substring)
 int s[maxn];
 int F[maxn];
 int dp[maxn];

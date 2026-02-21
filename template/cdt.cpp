@@ -1,3 +1,4 @@
+// Parallel binary search (整體二分)
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long

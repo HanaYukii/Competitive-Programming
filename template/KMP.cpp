@@ -1,3 +1,4 @@
+// KMP string matching
 #include <bits/stdc++.h>
 using namespace std;
 vector<int>fail;

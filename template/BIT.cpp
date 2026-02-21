@@ -1,3 +1,4 @@
+// Binary Indexed Tree (Fenwick Tree)
 #include<bits/stdc++.h>
 using namespace std;
  

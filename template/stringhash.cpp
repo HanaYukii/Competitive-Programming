@@ -1,3 +1,4 @@
+// String Hashing (rolling hash)
 #include<bits/stdc++.h>
 using namespace std;
  

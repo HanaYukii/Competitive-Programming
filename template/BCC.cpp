@@ -1,3 +1,4 @@
+// Biconnected Components (BCC)
 int dfn[maxn];
 int low[maxn];
 vector<int>g[maxn], g2[maxn];

@@ -1,3 +1,4 @@
+// Segment Tree with Lazy Propagation
 #include<bits/stdc++.h>
 using namespace std;
  

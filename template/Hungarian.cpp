@@ -1,3 +1,4 @@
+// Hungarian Algorithm (assignment problem)
 int k;
 vector<int>g[505];
 int match[505];

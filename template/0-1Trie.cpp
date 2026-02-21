@@ -1,3 +1,4 @@
+// 0-1 Trie (maximum XOR queries)
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

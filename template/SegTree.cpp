@@ -1,3 +1,4 @@
+// Segment Tree (point update, range query)
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
