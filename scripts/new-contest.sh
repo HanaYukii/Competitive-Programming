@@ -2,10 +2,10 @@
 # Create a new contest folder with template files and Makefile.
 #
 # Usage:
-#   ./scripts/new-contest.sh cf div2-900
-#   ./scripts/new-contest.sh cf div2-900 8
-#   ./scripts/new-contest.sh atcoder abc-350
-#   ./scripts/new-contest.sh leetcode weekly-400
+#   ./scripts/new-contest.sh cf 900-div2
+#   ./scripts/new-contest.sh cf 900-div2 8
+#   ./scripts/new-contest.sh atcoder 350-abc
+#   ./scripts/new-contest.sh leetcode 400-weekly
 
 set -e
 
@@ -18,7 +18,7 @@ PROBLEMS="${3:-0}"
 if [ -z "$PLATFORM" ] || [ -z "$CONTEST" ]; then
     echo "Usage: $0 <platform> <contest> [problems]"
     echo "  platform: cf, atcoder (at), leetcode (lc)"
-    echo "  contest:  div2-900, abc-350, weekly-400, etc."
+    echo "  contest:  900-div2, 350-abc, 400-weekly, etc."
     echo "  problems: number of problems (default: 7 for cf/at, 4 for lc)"
     exit 1
 fi

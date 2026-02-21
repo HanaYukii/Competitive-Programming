@@ -2,10 +2,10 @@
 .SYNOPSIS
     Create a new contest folder with template files and Makefile.
 .EXAMPLE
-    .\scripts\new-contest.ps1 cf div2-900
-    .\scripts\new-contest.ps1 cf div2-900 8
-    .\scripts\new-contest.ps1 atcoder abc-350
-    .\scripts\new-contest.ps1 leetcode weekly-400
+    .\scripts\new-contest.ps1 cf 900-div2
+    .\scripts\new-contest.ps1 cf 900-div2 8
+    .\scripts\new-contest.ps1 atcoder 350-abc
+    .\scripts\new-contest.ps1 leetcode 400-weekly
 #>
 param(
     [Parameter(Mandatory)][string]$Platform,

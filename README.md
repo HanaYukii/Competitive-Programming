@@ -25,15 +25,15 @@
 │   └── sweepline/
 └── contest/               # 比賽紀錄
     ├── codeforces/
-    │   ├── div2-900/      # Round 900 (Div. 2)
-    │   ├── edu-160/       # Educational Round 160
-    │   └── global-25/     # Global Round 25
+    │   ├── 900-div2/      # Round 900 (Div. 2)
+    │   ├── 160-edu/       # Educational Round 160
+    │   └── 25-global/     # Global Round 25
     ├── atcoder/
-    │   ├── abc-350/       # AtCoder Beginner Contest 350
-    │   └── arc-180/       # AtCoder Regular Contest 180
+    │   ├── 350-abc/       # AtCoder Beginner Contest 350
+    │   └── 180-arc/       # AtCoder Regular Contest 180
     └── leetcode/
-        ├── weekly-400/    # Weekly Contest 400
-        └── biweekly-130/  # Biweekly Contest 130
+        ├── 400-weekly/    # Weekly Contest 400
+        └── 130-biweekly/  # Biweekly Contest 130
 ```
 
 ## 比賽紀錄 (`contest/`)
@@ -46,11 +46,11 @@
 
 | 比賽類型 | 資料夾格式 | 範例 |
 |----------|-----------|------|
-| Div. 1 | `div1-{number}` | `div1-901/` |
-| Div. 2 | `div2-{number}` | `div2-900/` |
-| Educational | `edu-{number}` | `edu-160/` |
-| Global Round | `global-{number}` | `global-25/` |
-| 其他 | 比賽名稱簡寫 | `hello-2024/` |
+| Div. 1 | `{number}-div1` | `901-div1/` |
+| Div. 2 | `{number}-div2` | `900-div2/` |
+| Educational | `{number}-edu` | `160-edu/` |
+| Global Round | `{number}-global` | `25-global/` |
+| 其他 | `{number}-{name}` | `2024-hello/` |
 
 ### AtCoder (`contest/atcoder/`)
 
@@ -58,9 +58,9 @@
 
 | 比賽類型 | 資料夾格式 | 範例 |
 |----------|-----------|------|
-| ABC | `abc-{number}` | `abc-350/` |
-| ARC | `arc-{number}` | `arc-180/` |
-| AGC | `agc-{number}` | `agc-065/` |
+| ABC | `{number}-abc` | `350-abc/` |
+| ARC | `{number}-arc` | `180-arc/` |
+| AGC | `{number}-agc` | `065-agc/` |
 
 ### LeetCode (`contest/leetcode/`)
 
@@ -68,8 +68,8 @@
 
 | 比賽類型 | 資料夾格式 | 範例 |
 |----------|-----------|------|
-| Weekly | `weekly-{number}` | `weekly-400/` |
-| Biweekly | `biweekly-{number}` | `biweekly-130/` |
+| Weekly | `{number}-weekly` | `400-weekly/` |
+| Biweekly | `{number}-biweekly` | `130-biweekly/` |
 
 ### 快速開始
 
@@ -77,13 +77,13 @@
 
 ```bash
 # PowerShell
-.\scripts\new-contest.ps1 cf div2-900       # Codeforces Div.2 Round 900 (預設 7 題)
-.\scripts\new-contest.ps1 at abc-350         # AtCoder ABC 350
-.\scripts\new-contest.ps1 lc weekly-400      # LeetCode Weekly 400 (預設 4 題)
-.\scripts\new-contest.ps1 cf div2-900 8      # 指定題數
+.\scripts\new-contest.ps1 cf 900-div2       # Codeforces Div.2 Round 900 (預設 7 題)
+.\scripts\new-contest.ps1 at 350-abc         # AtCoder ABC 350
+.\scripts\new-contest.ps1 lc 400-weekly      # LeetCode Weekly 400 (預設 4 題)
+.\scripts\new-contest.ps1 cf 900-div2 8      # 指定題數
 
 # Bash / WSL
-./scripts/new-contest.sh cf div2-900
+./scripts/new-contest.sh cf 900-div2
 ```
 
 **編譯與執行**（進入比賽資料夾後）：
