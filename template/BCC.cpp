@@ -1,8 +1,8 @@
 // Biconnected Components (BCC)
-int dfn[maxn];
-int low[maxn];
-vector<int>g[maxn], g2[maxn];
-int b[maxn];
+int dfn[MAXN];
+int low[MAXN];
+vector<int>g[MAXN], g2[MAXN];
+int b[MAXN];
 int bcc;
 stack<int>st;
 int stamp;
@@ -39,14 +39,14 @@ void go() {
     f(m) {
         int x, y;
         cin >> x >> y;
-        g[x].pb(y);
-        g[y].pb(x);
+        g[x].push_back(y);
+        g[y].push_back(x);
     }
     dfs(1);
     f1(n) {
         for (auto &j : g[i]) {
             if (b[j] != b[i]) {
-                g2[b[i]].pb(b[j]);
+                g2[b[i]].push_back(b[j]);
             }
         }
     }

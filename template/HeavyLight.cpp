@@ -1,20 +1,13 @@
 // Heavy-Light Decomposition (HLD)
 #include<bits/stdc++.h>
 using namespace std;
- 
-#define pb push_back
-#define ll long long
-#define maxn 50005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-vector<int>g[maxn];
-int sz[maxn],fa[maxn],son[maxn],dep[maxn];
-int idx[maxn],top[maxn],stamp;
-int v[maxn],t[maxn];
-int val[maxn<<2];
+
+const int MAXN = 50005;
+vector<int>g[MAXN];
+int sz[MAXN],fa[MAXN],son[MAXN],dep[MAXN];
+int idx[MAXN],top[MAXN],stamp;
+int v[MAXN],t[MAXN];
+int val[MAXN<<2];
 int n;
 void init(){
     for(int i = 1 ; i <= n ; i++){
@@ -114,16 +107,16 @@ int main(){
     int m, q;
     while(cin >> n >> m >> q){
     init();
-    f1(n)cin >> v[i];
-    f(n-1){
+    for (int i = 1; i <= n; i++) cin >> v[i];
+    for (int i = 0; i < n-1; i++){
         int add1, add2, add3;
         cin >> add1 >> add2;
-        g[add1].pb(add2);
-        g[add2].pb(add1);
+        g[add1].push_back(add2);
+        g[add2].push_back(add1);
     }
     dfs1(1,0);
     dfs2(1,1);
-    f1(n){
+    for (int i = 1; i <= n; i++){
         t[idx[i]] = v[i];
     }
     build(1,1,n);

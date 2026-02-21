@@ -2,25 +2,17 @@
 // cses 2107
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
 const int mod = 1e9 + 7;
-const int maxn = 200005;
+const int MAXN = 200005;
 
 vector<int> build(string s) {
     vector<int>fail;
-    fail.pb(-1);
+    fail.push_back(-1);
     int p1 = 0, p2 = -1;
     while (p1 < (int)s.size()) {
         if (p2 == -1 || s[p1] == s[p2]) {
             p1++, p2++;
-            fail.pb(p2);
+            fail.push_back(p2);
         }
         else {
             p2 = fail[p2];

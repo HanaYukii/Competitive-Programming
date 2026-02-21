@@ -1,25 +1,16 @@
 // Parallel binary search (整體二分)
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-using namespace std;
-const int maxn = 100005;
+const int MAXN = 100005;
 const int mod = 998244353;
-vector<int>g[maxn];
+vector<int>g[MAXN];
 int n;
-int u[maxn];
-int sz[maxn];
-int p[maxn];
-int pa[maxn][18];
-int dep[maxn];
-int d[maxn];
+int u[MAXN];
+int sz[MAXN];
+int p[MAXN];
+int pa[MAXN][18];
+int dep[MAXN];
+int d[MAXN];
 void mark(int now, int pre) {
     sz[now] = 1;
     for (auto i:g[now]) {
@@ -128,11 +119,11 @@ int main(){
     cin.tie(0);
     int k;
     cin >> n >> k;
-    f (n - 1) {
+    for (int i = 0; i < n - 1; i++) {
         int x, y;
         cin >> x >> y;
-        g[x].pb(y);
-        g[y].pb(x);
+        g[x].push_back(y);
+        g[y].push_back(x);
     }    
     dfs(1, 0);
     for (int i = 1 ; i < 18 ; i++) {

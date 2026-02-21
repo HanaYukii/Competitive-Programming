@@ -1,15 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
 const int mod = 1e9 + 7;
-const int maxn = 1e6+5;
+const int MAXN = 1e6+5;
 const long long INF = 1LL<<60;
 struct Dinic {  //O(VVE), with minimum cut 
     static const int MAXN = 5003;
@@ -102,12 +94,12 @@ void go() {
     int n;
     cin >> n;
     int u, v, w;
-    f1(n) {
+    for (int i = 1; i <= n; i++) {
         g[i].clear();
     }
     while (cin >> u >> v >> w && u) {
-        g[u].pb({v, w});
-        g[v].pb({u, w});
+        g[u].push_back({v, w});
+        g[v].push_back({u, w});
     }
     priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
     pq.push({0,1});
@@ -117,12 +109,12 @@ void go() {
     while (pq.size()) {
         auto now = pq.top();
         pq.pop();
-       // cout << now.S <<' '<<dis[now.S] << endl;
-        if (dis[now.S] != now.F)continue;
-        for (auto &i : g[now.S]) {
-            if (dis[i.F] > now.F + i.S) {
-                dis[i.F] = now.F + i.S;
-                pq.push({dis[i.F], i.F});
+       // cout << now.second <<' '<<dis[now.second] << endl;
+        if (dis[now.second] != now.first)continue;
+        for (auto &i : g[now.second]) {
+            if (dis[i.first] > now.first + i.second) {
+                dis[i.first] = now.first + i.second;
+                pq.push({dis[i.first], i.first});
             }
         }
     }
@@ -131,22 +123,22 @@ void go() {
     while (pq.size()) {
         auto now = pq.top();
         pq.pop();
-        if (dis2[now.S] != now.F)continue;
-        for (auto &i : g[now.S]) {
-            if (dis2[i.F] > now.F + i.S) {
-                dis2[i.F] = now.F + i.S;
-                pq.push({dis2[i.F], i.F});
+        if (dis2[now.second] != now.first)continue;
+        for (auto &i : g[now.second]) {
+            if (dis2[i.first] > now.first + i.second) {
+                dis2[i.first] = now.first + i.second;
+                pq.push({dis2[i.first], i.first});
             }
         }
     }
     dinic.init();
     dinic.n = n + 2;
     dinic.add_edge(0,1,INF);
-    f1(n) {
+    for (int i = 1; i <= n; i++) {
         for (auto &j : g[i]) {
-            if (dis[i] + j.S + dis2[j.F] == dis[n]) {
-                dinic.add_edge(i, j.F, 1);
-                //cout << i <<' '<<j.F<<endl;
+            if (dis[i] + j.second + dis2[j.first] == dis[n]) {
+                dinic.add_edge(i, j.first, 1);
+                //cout << i <<' '<<j.first<<endl;
             }
         }
     }

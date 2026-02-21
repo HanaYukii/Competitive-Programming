@@ -1,22 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
- 
-#define pb push_back
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-#define pll pair<ll,ll>
-#define pii pair<int,int>
-#define F first
-#define S second
-const int maxn = 1e5 + 5;
+
+using pll = pair<long long,long long>;
+using pii = pair<int,int>;
+const int MAXN = 1e5 + 5;
 const int mod = 1e9 + 7;
 
 struct mat {
-    ll a[2][2];
+    long long a[2][2];
     mat() {
         memset( a, 0, sizeof( a ) );
     }
@@ -35,7 +26,7 @@ struct mat {
                 ret.a[i][j] = (a[i][j] + b.a[i][j] ) % mod;
         return ret;
     }
-}sum[maxn<<2], lz[maxn<<2];
+}sum[MAXN<<2], lz[MAXN<<2];
 
 mat get(int k) {
     mat ret;
@@ -82,7 +73,7 @@ void build( int x, int l, int r ) {
     build(x<<1|1,mid+1,r);
     pull(x);
 }
-ll query( int x, int l, int r, int ql,int qr ) {
+long long query( int x, int l, int r, int ql,int qr ) {
     if(ql <= l && qr >= r) {
         return sum[x].a[0][0];
     }

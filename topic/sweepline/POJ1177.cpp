@@ -3,16 +3,7 @@
 #include<vector>
 using namespace std;
 
-#define pb push_back
-#define ll long long
-#define maxn 20005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-#define F first
-#define S second
+const int MAXN = 20005;
 struct s{
     int x;
     int l,r,del;
@@ -20,11 +11,11 @@ struct s{
 bool cmp(s x,s y){
     return x.x < y.x;
 }
-int cnt[maxn<<2];
-int lbd[maxn<<2];
-int rbd[maxn<<2];
-int tr1[maxn<<2];
-int tr2[maxn<<2];
+int cnt[MAXN<<2];
+int lbd[MAXN<<2];
+int rbd[MAXN<<2];
+int tr1[MAXN<<2];
+int tr2[MAXN<<2];
 void pushup(int x,int l,int r){
     if(cnt[x]){
         lbd[x] = rbd[x] = 1;
@@ -68,14 +59,14 @@ int main(){
     int n;
     cin >> n;
     vector<s>v;
-    ll ans = 0;
-    f(n){
+    long long ans = 0;
+    for (int i = 0; i < n; i++){
         int l, r, u, d;
         cin >> l >> u >> r >> d;
         l++;
         l += 10000,r += 10000; 
-        v.pb({u,l,r,1});
-        v.pb({d,l,r,-1});
+        v.push_back({u,l,r,1});
+        v.push_back({d,l,r,-1});
     }
     sort(v.begin(),v.end(),cmp);
     int last = 0;

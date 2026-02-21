@@ -1,19 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
  
-#define pb push_back
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-#define pll pair<ll,ll>
-#define pii pair<int,int>
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-const int maxn = 1e6 + 50000;
+using pll = pair<long long,long long>;
+using pii = pair<int,int>;
+const int MAXN = 1e6 + 50000;
 const int mod = 1e9 + 7;
 vector<int>g[205];
 set<pair<int,int>>st;
@@ -39,28 +29,28 @@ void solve() {
     st.clear();
     int  m;
     cin >> n >> m;
-    f1 (n + 1) {
+    for (int i = 1; i <= n + 1; i++) {
         g[i].clear();
         v[i] = 0;
     }
-    f (m) {
+    for (int i = 0; i < m; i++) {
         int x, y;
         cin >> x >> y;
-        g[x].pb(y);
-        g[y].pb(x);
+        g[x].push_back(y);
+        g[y].push_back(x);
     }
     int ans = 0;
-    f1(n) {
+    for (int i = 1; i <= n; i++) {
         if (g[i].size() % 2) {
-            g[n+1].pb(i);
-            g[i].pb(n+1);
+            g[n+1].push_back(i);
+            g[i].push_back(n+1);
         }
         else {
             ans++;
         }
     }
     cout << ans << '\n';
-    f1(n) {
+    for (int i = 1; i <= n; i++) {
         if (!v[i]) {
             dfs(i);
         }

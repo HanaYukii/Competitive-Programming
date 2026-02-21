@@ -12,7 +12,7 @@ bool dfs(int x) {
         }
         else if (!vis[match[i]]) {
             vis[match[i]] = 1;
-            v.pb(match[i]);
+            v.push_back(match[i]);
             if (dfs(match[i])) {
                 match[i] = x;
                 return 1;
@@ -29,7 +29,7 @@ void solve() {
     for (int i = 0 ; i < m ; i++) {
         int a, b;
         cin >> a >> b;
-        g[a].pb(b);
+        g[a].push_back(b);
     }
     int ans = 0;
     for (int i = 1 ; i <= n ; i++) {

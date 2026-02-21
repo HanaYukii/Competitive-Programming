@@ -1,24 +1,17 @@
 #include<bits/stdc++.h>
 
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
 using namespace std;
 const int mod = 1e9+7;
-const int maxn = 400005;
-vector<int>g[maxn]; 
-vector<int>rev[maxn]; 
+const int MAXN = 400005;
+vector<int>g[MAXN]; 
+vector<int>rev[MAXN]; 
 stack<int>st;  
 int n,m,scc,idx;  
-int low[maxn],dfn[maxn],instack[maxn],fa[maxn];  
-int ans[maxn];
-int in[maxn];
-int opp[maxn],c[maxn];
-int nd[maxn];
+int low[MAXN],dfn[MAXN],instack[MAXN],fa[MAXN];  
+int ans[MAXN];
+int in[MAXN];
+int opp[MAXN],c[MAXN];
+int nd[MAXN];
 void tarjan(int now){
     dfn[now] = low[now] = ++idx;
     instack[now] = 1;
@@ -72,7 +65,7 @@ void build(){
 void topo(){
     memset(c,0,sizeof(c));
     queue<int>q;
-    f1(scc){
+    for (int i = 1; i <= scc; i++){
         if(!in[i])q.push(i);
     }
     while(!q.empty()){
@@ -91,9 +84,9 @@ void topo(){
         }
     }
     vector<int>ans;
-    f(n){
+    for (int i = 0; i < n; i++){
         if(c[fa[i*2]]==1){
-            ans.pb(i+1);
+            ans.push_back(i+1);
         }
     }
     cout<<ans.size()<<endl;
@@ -111,36 +104,36 @@ int main(){
         vector<int>cur;
         int k;
         cin >> k;
-        f(k){
+        for (int i = 0; i < k; i++){
             int add;
             cin >> add;
-            last.pb(add);
+            last.push_back(add);
         }
-        f(n-1){
+        for (int i = 0; i < n-1; i++){
             cin >> k;
             while(k--){
                 int add;
                 cin >> add;
-                cur.pb(add);
+                cur.push_back(add);
             }
             int sz1 = last.size();
             int sz2 = cur.size();
             int f = 0;
-            fr(j,0,min(sz1,sz2)){
+            for (int j = 0; j < min(sz1,sz2); j++){
                 if(last[j]!=cur[j]){
                     if(last[j]>cur[j]){
                         int num1 = last[j];
                         int num2 = cur[j];
                         num1--,num2--;
-                        g[num2*2].pb(num2*2+1);
-                        g[num1*2+1].pb(num1*2);
+                        g[num2*2].push_back(num2*2+1);
+                        g[num1*2+1].push_back(num1*2);
                     }
                     else{
                         int num1 = last[j];
                         int num2 = cur[j];
                         num1--,num2--;
-                        g[num2*2].pb(num1*2);
-                        g[num1*2+1].pb(num2*2+1);
+                        g[num2*2].push_back(num1*2);
+                        g[num1*2+1].push_back(num2*2+1);
                     }
                     f = 1;
                     break;

@@ -60,7 +60,7 @@ void build() {
         for (auto j : g[i]) {
             if (pa[j] != pa[i]) {
                 in[pa[i]]++;
-                rev[pa[j]].pb(pa[i]);
+                rev[pa[j]].push_back(pa[i]);
             }
         }
     }
@@ -68,7 +68,7 @@ void build() {
 void topo() {
     memset(pick, 0, sizeof(pick));
     queue<int>q;
-    f1(scc) {
+    for (int i = 1; i <= scc; i++) {
         if (!in[i]) {
             q.push(i);
         }
@@ -87,7 +87,7 @@ void topo() {
             }
         }
     }
-    f1(n) {
+    for (int i = 1; i <= n; i++) {
         if (pick[pa[i]] == 1) {
             cout << '-' <<' ';
         }

@@ -7,26 +7,19 @@
 #include<vector>
 #include<queue>
  
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
 using namespace std;
 const int mod = 1e9+7;
-const int maxn = 405;
-vector<int>g[maxn]; 
+const int MAXN = 405;
+vector<int>g[MAXN]; 
 stack<int>st;  
 int n,m,scc,index;  
-int low[maxn],dfn[maxn],instack[maxn],fa[maxn];  
-int gp[maxn][3];
-vector<int>can[maxn];
+int low[MAXN],dfn[MAXN],instack[MAXN],fa[MAXN];  
+int gp[MAXN][3];
+vector<int>can[MAXN];
 void init(){
 	scc = index = 0;
 	while(!st.empty())st.pop();
-	for(int i=0;i<maxn;i++)g[i].clear();
+	for(int i=0;i<MAXN;i++)g[i].clear();
 	memset(dfn,0,sizeof(dfn));
 	memset(instack,0,sizeof(instack));
 	memset(low,0,sizeof(low));
@@ -71,12 +64,12 @@ bool check(){
 }
 void add(int x,int y){
 	int f1=0,f2=0;
-	f(3){
+	for (int i = 0; i < 3; i++){
 		if(gp[x][i]==0&&gp[y][i]==0){
 			int idx1 = x*2+f1;
 			int idx2 = y*2+f2;
-			g[idx1].pb(idx2^1);
-			g[idx2].pb(idx1^1);
+			g[idx1].push_back(idx2^1);
+			g[idx2].push_back(idx1^1);
 		}
 		if(!gp[x][i]){
 			f1++;
@@ -87,8 +80,8 @@ void add(int x,int y){
 	}
 }
 void build(int now){
-	f1(n){
-		fr(j,now,n-1){
+	for (int i = 1; i <= n; i++){
+		for (int j = now; j < n-1; j++){
 			add(i,can[i][j]);
 		}
 	}
@@ -102,13 +95,13 @@ int main(){
 			int add;
 			cin >> add;
 			gp[i][add] = 1;
-			fr(j,0,n-1){
+			for (int j = 0; j < n-1; j++){
 				cin >> add;
-				can[i].pb(add);
+				can[i].push_back(add);
 			}
 			//reverse(can[i].begin(),can[i].end());
 		}
-		f(n+1){
+		for (int i = 0; i < n+1; i++){
 			init();
 			build(i);
 			if(check()){

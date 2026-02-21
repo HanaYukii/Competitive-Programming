@@ -1,29 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-const ll mod = 1e9 + 7;
-const int maxn = 1e6+5;
+const long long mod = 1e9 + 7;
+const int MAXN = 1e6+5;
 const int mul = 9997;
-ll h[maxn];
-ll p[maxn];
+long long h[MAXN];
+long long p[MAXN];
 string s;
 void build() {
     for (int i = 0 ; i < s.size() ; i++) {
         h[i + 1] = (h[i] * mul + s[i]) % mod;
     }
     p[0] = 1;
-    f1(s.size()) {
+    for (int i = 1; i <= s.size(); i++) {
         p[i] = p[i - 1] * mul % mod;
     }
 }
-ll query(int l,int r) {
+long long query(int l,int r) {
     //cout << l <<' '<<r<<endl;
     return ((h[r] - h[l - 1] * p[r - l + 1] % mod) + mod) % mod;
 }
@@ -34,7 +26,7 @@ void go() {
     build();
     int f = 1;
     int cnt = 0;
-    f (k) {
+    for (int i = 0; i < k; i++) {
         int pos;
         cin >> pos;
         cnt += max(0,pos - f);
@@ -48,8 +40,8 @@ void go() {
     }
     cnt += n + 1 - f;
     //cout << cnt << endl;
-    ll ans = 1;
-    f(cnt) {
+    long long ans = 1;
+    for (int i = 0; i < cnt; i++) {
         ans *= 26;
         ans %= mod;
     }

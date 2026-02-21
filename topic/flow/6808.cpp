@@ -1,15 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
 const int mod = 1e9 + 7;
-const int maxn = 1e6+5;
+const int MAXN = 1e6+5;
 const long long INF = 1LL<<60;
 struct Dinic {  //O(VVE), with minimum cut 
     static const int MAXN = 200003;
@@ -101,29 +93,29 @@ void go() {
     vector<int>add,minus;
     vector<pair<int,int>>v;
     cin >> n;
-    f(n) {
+    for (int i = 0; i < n; i++) {
         int x, y;
         cin >> x >> y;
-        add.pb(x + y);
-        minus.pb(x - y);
-        v.pb({x, y});
+        add.push_back(x + y);
+        minus.push_back(x - y);
+        v.push_back({x, y});
     }
-    sort(all(add));
-    sort(all(minus));
-    add.erase(unique(all(add)),add.end());
-    minus.erase(unique(all(minus)),minus.end());
+    sort((add).begin(), (add).end());
+    sort((minus).begin(), (minus).end());
+    add.erase(unique((add).begin(), (add).end()),add.end());
+    minus.erase(unique((minus).begin(), (minus).end()),minus.end());
     dinic.init();
     dinic.n = add.size() + minus.size() + 2;
     int st = dinic.n - 1;
     int ed = st - 1;
-    f((int)add.size()) {
+    for (int i = 0; i < (int)add.size(); i++) {
         dinic.add_edge(st,i,1);
     }
-    f((int)minus.size()) {
+    for (int i = 0; i < (int)minus.size(); i++) {
         dinic.add_edge(add.size()+i,ed,1);
     }
-    f(n) {
-        dinic.add_edge(lower_bound(all(add),v[i].F + v[i].S) - add.begin(), add.size() + lower_bound(all(minus),v[i].F - v[i].S)-minus.begin(),1);
+    for (int i = 0; i < n; i++) {
+        dinic.add_edge(lower_bound((add).begin(), (add).end(),v[i].first + v[i].second) - add.begin(), add.size() + lower_bound((minus).begin(), (minus).end(),v[i].first - v[i].second)-minus.begin(),1);
     }
     cout << dinic.maxflow(st, ed) << '\n';
 }

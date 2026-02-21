@@ -8,7 +8,7 @@ void dfs(int now, int pre) {
     for (auto &i : g[now]) {
         if (i ^ pre) {
             dfs(i, now);
-            ch.pb(dep[i]);
+            ch.push_back(dep[i]);
         }
     }
     sort(all(ch));

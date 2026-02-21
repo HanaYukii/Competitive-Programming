@@ -2,26 +2,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<pair<int,int>>g[maxn];
-int dis[maxn];
+const int MAXN = 100005;
+
+vector<pair<int,int>> g[MAXN];
+int dis[MAXN];
 int n;
-priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-void dij(int x) {
-    pq.push({0,1});
+priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+
+void dij(int s) {
     memset(dis, 0x3f, sizeof(dis));
-    dis[1] = 0;
+    dis[s] = 0;
+    pq.push({0, s});
     while (pq.size()) {
         auto now = pq.top();
         pq.pop();
-        if (dis[now.S] != now.F)continue;
-        for (auto &i : g[now.S]) {
-            if (now.F + i.S < dis[i.F]) {
-                dis[i.F] = now.F + i.S;
-                pq.push({dis[i.F], i.F});
+        if (dis[now.second] != now.first) continue;
+        for (auto &e : g[now.second]) {
+            if (now.first + e.second < dis[e.first]) {
+                dis[e.first] = now.first + e.second;
+                pq.push({dis[e.first], e.first});
             }
         }
     }
-} 
+}
+
 int main() {
 
 }

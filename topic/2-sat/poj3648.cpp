@@ -7,24 +7,17 @@
 #include<vector>
 #include<queue>
 
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
 using namespace std;
 const int mod = 1e9+7;
-const int maxn = 66;
-vector<int>g[maxn]; 
-vector<int>rev[maxn]; 
+const int MAXN = 66;
+vector<int>g[MAXN]; 
+vector<int>rev[MAXN]; 
 stack<int>st;  
 int n,m,scc,index;  
-int low[maxn],dfn[maxn],instack[maxn],fa[maxn];  
-int ans[maxn];
-int in[maxn];
-int opp[maxn],c[maxn];
+int low[MAXN],dfn[MAXN],instack[MAXN],fa[MAXN];  
+int ans[MAXN];
+int in[MAXN];
+int opp[MAXN],c[MAXN];
 int toidx(string s){
 	int n=s.size();
 	char c = s[n-1];
@@ -44,7 +37,7 @@ int toidx(string s){
 void init(){
 	scc = index = 0;
 	while(!st.empty())st.pop();
-	for(int i=0;i<maxn;i++)g[i].clear(),rev[i].clear();
+	for(int i=0;i<MAXN;i++)g[i].clear(),rev[i].clear();
 	memset(dfn,0,sizeof(dfn));
 	memset(instack,0,sizeof(instack));
 	memset(low,0,sizeof(low));
@@ -91,7 +84,7 @@ bool check(){
 	return 1;
 }
 void build(){
-	f(2*n){
+	for (int i = 0; i < 2*n; i++){
 		int x = fa[i];
 		for(int j=0;j<(int)g[i].size();j++){
 			int y = fa[g[i][j]];
@@ -105,7 +98,7 @@ void build(){
 void topo(){
 	memset(c,0,sizeof(c));
 	queue<int>q;
-	f1(scc){
+	for (int i = 1; i <= scc; i++){
 		if(!in[i])q.push(i);
 	}
 	while(!q.empty()){
@@ -123,7 +116,7 @@ void topo(){
 			}
 		}
 	}
-	f1(n-1){
+	for (int i = 1; i <= n-1; i++){
 		if(c[fa[i*2]]==1){
 			cout<<i<<'w'<<' ';
 		}
@@ -137,7 +130,7 @@ int main(){
 	cin.tie(0);
 	while(cin >> n >> m && n){
 		init();
-		f(m){
+		for (int i = 0; i < m; i++){
 			string s1,s2;
 			cin >> s1 >> s2;
 			int add1 = toidx(s1);
@@ -149,11 +142,11 @@ int main(){
 
 			}
 			else if(add1 == 1){
-				g[add2^1].pb(add2);
+				g[add2^1].push_back(add2);
 			}
 			else{
-				g[add1^1].pb(add2);
-				g[add2^1].pb(add1);
+				g[add1^1].push_back(add2);
+				g[add2^1].push_back(add1);
 			}
 		}
 		if(check()){

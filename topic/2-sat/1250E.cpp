@@ -1,12 +1,5 @@
 #include<bits/stdc++.h>
 
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
 using namespace std;
 int d[200];
 int fi(int x){
@@ -23,22 +16,22 @@ int main(){
 	    int n,m,k;
         cin >> n >> m >> k;
         string s[n+5],rev[n+5];
-        f(n){
+        for (int i = 0; i < n; i++){
             cin >> s[i];
             rev[i] = s[i];
             reverse(rev[i].begin(),rev[i].end());
         }
-        f(2*n){
+        for (int i = 0; i < 2*n; i++){
             d[i] = i;
             sz[i] = 0;
             yes[i] = 0;
         }
         int f = 0;
-        f(n){
-            fr(j,i+1,n){
+        for (int i = 0; i < n; i++){
+            for (int j = i+1; j < n; j++){
                 int ok1 = 0,ok2 = 0;
                 int cnt = 0,cnt2=0;
-                fr(l,0,m){
+                for (int l = 0; l < m; l++){
                     if(s[i][l]==s[j][l])
                         cnt++;
                     if(s[i][l]==rev[j][l])
@@ -68,7 +61,7 @@ int main(){
                 }
             }
         }
-        f(n){
+        for (int i = 0; i < n; i++){
             if(fi(i)==fi(i+n)){
                 f = 1;
             }
@@ -77,30 +70,30 @@ int main(){
             cout<<-1<<endl;
         }
         else{
-            f(n){
+            for (int i = 0; i < n; i++){
                 yes[fi(i)]++;
                 sz[fi(i)]++;
             }
-            fr(i,n,2*n){
+            for (int i = n; i < 2*n; i++){
                 //cout << fi(i)<<' ';
                 sz[fi(i)]++;
             }
             set<int>c;
-            f(2*n){
+            for (int i = 0; i < 2*n; i++){
                 if(!sz[i])continue;
                 if(yes[i]*2<sz[i])continue;
                 //cout<<i<<' '<<yes[i]<<' '<<sz[i]<<endl;
                 c.insert(i);
             }
-            f(n){
+            for (int i = 0; i < n; i++){
                 if(c.count(fi(i))&&c.count(fi(i+n))){
                     c.erase(fi(i+n));
                 }
             }
             vector<int>ans;
-            fr(i,n,2*n){
+            for (int i = n; i < 2*n; i++){
                 if(c.count(fi(i))){
-                    ans.pb(i-n+1);
+                    ans.push_back(i-n+1);
                 }
             }
             cout << ans.size() << endl;

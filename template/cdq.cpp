@@ -1,16 +1,7 @@
 // CDQ divide and conquer
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-using namespace std;
-const int maxn = 1000005;
+const int MAXN = 1000005;
 const int mod = 998244353;
 int k;
 struct s
@@ -19,7 +10,7 @@ struct s
     int cnt, ans, id;
 };
 vector<s>v;
-int b[maxn];
+int b[MAXN];
 void update(int x, int d) {
     while (x <= 100000) {
         b[x] += d;
@@ -80,12 +71,12 @@ int main(){
         v.clear();
         int n;
         cin >> n;
-        f (n) {
+        for (int i = 0; i < n; i++) {
             int x, y, z;
             cin >> x >> y >> z;
-            v.pb({x,y,z,1,0,i});
+            v.push_back({x,y,z,1,0,i});
         }
-        sort(all(v), cmp);
+        sort((v).begin(), (v).end(), cmp);
         
         cdq(0, v.size() - 1);
         vector<int>ans(n,0);

@@ -3,13 +3,6 @@
 #include <cstring>
 #include <algorithm>
 #include <cmath>
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
 using namespace std;
 const int mod = 1e9+7;
 const int N = 2000;
@@ -59,14 +52,14 @@ int main(){
 	cin.tie(0);
 	while(cin >> n >> m){
 		init();
-		f1(m){
+		for (int i = 1; i <= m; i++){
 			cin >> a[i] >> b[i];
 			if(a[i]>b[i]){
 				swap(a[i],b[i]);
 			}
 		}
-		f1(m){
-			fr(j,i+1,m+1){
+		for (int i = 1; i <= m; i++){
+			for (int j = i+1; j < m+1; j++){
 				if((a[i]<a[j]&&b[i]<b[j]&&a[j]<b[i])||(a[j]<a[i]&&b[j]<b[i]&&a[i]<b[j])){
 					add_edge(i,j+m);
 					add_edge(j+m,i);
@@ -75,11 +68,11 @@ int main(){
 				}
 			}
 		}
-		f1(2*m){
+		for (int i = 1; i <= 2*m; i++){
 			if(dfn[i]==-1)tarjan(i);
 		}
 		int f = 0;
-		f1(m){
+		for (int i = 1; i <= m; i++){
 			if(scc[i]==scc[i+m]){
 				f = 1;
 			}

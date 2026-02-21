@@ -1,30 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define pb push_back
-#define ll long long
-#define maxn 200005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-#define F first
-#define S second
+const int MAXN = 200005;
 struct s{
-    ll x;
-    ll L,R;
+    long long x;
+    long long L,R;
     int l,r,del;
 };
 bool cmp(s x,s y){
     return x.x < y.x;
 }
-int cnt[maxn<<2];
-ll tot[maxn<<2];
-ll tote[maxn<<2];
-ll toto[maxn<<2];
-map<ll,int>mp;
-ll pre[maxn];
+int cnt[MAXN<<2];
+long long tot[MAXN<<2];
+long long tote[MAXN<<2];
+long long toto[MAXN<<2];
+map<long long,int>mp;
+long long pre[MAXN];
 int idx;
 void init(){
     idx = 0;
@@ -104,8 +95,8 @@ int main(){
     cin >> n;
     init();
     vector<s>v;
-    f(n){
-        ll l, r, u, d;
+    for (int i = 0; i < n; i++){
+        long long l, r, u, d;
         cin >> l >> u >> r >> d;
         if(l>r){
             swap(l,r);
@@ -113,22 +104,22 @@ int main(){
         if(u>d){
             swap(u,d);
         }
-        v.pb({u,l,r,0,0,1});
-        v.pb({d,l,r,0,0,-1});
+        v.push_back({u,l,r,0,0,1});
+        v.push_back({d,l,r,0,0,-1});
         mp[l];
         mp[r];
     }   
     for(auto &i:mp){
-        i.S = ++idx;
-        pre[idx] = i.F;
+        i.second = ++idx;
+        pre[idx] = i.first;
     }
     for(auto &i:v){
         i.l = mp[i.L] + 1;
         i.r = mp[i.R];
     }
     sort(v.begin(),v.end(),cmp);
-    ll last = 0;
-    ll ans = 0;
+    long long last = 0;
+    long long ans = 0;
     build(1,1,idx);
     for(auto i:v){
         ans += (i.x - last) * (tot[1] - toto[1]);

@@ -1,24 +1,17 @@
 #include<bits/stdc++.h>
 
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
 using namespace std;
 const int mod = 1e9+7;
-const int maxn = 8005;
-vector<int>g[maxn]; 
-vector<int>rev[maxn]; 
+const int MAXN = 8005;
+vector<int>g[MAXN]; 
+vector<int>rev[MAXN]; 
 stack<int>st;  
 int n,m,scc,idx;  
-int low[maxn],dfn[maxn],instack[maxn],fa[maxn];  
-int ans[maxn];
-int in[maxn];
-int opp[maxn],c[maxn];
-int nd[maxn];
+int low[MAXN],dfn[MAXN],instack[MAXN],fa[MAXN];  
+int ans[MAXN];
+int in[MAXN];
+int opp[MAXN],c[MAXN];
+int nd[MAXN];
 void tarjan(int now){
 	dfn[now] = low[now] = ++idx;
 	instack[now] = 1;
@@ -72,7 +65,7 @@ void build(){
 void topo(){
 	memset(c,0,sizeof(c));
 	queue<int>q;
-	f1(scc){
+	for (int i = 1; i <= scc; i++){
 		if(!in[i])q.push(i);
 	}
 	while(!q.empty()){
@@ -91,16 +84,16 @@ void topo(){
 		}
 	}
 	int cnt = 0;
-	f(n*2){
+	for (int i = 0; i < n*2; i++){
 		if(c[fa[i*2]]==1)cnt++;
 	}
 	cout << cnt << '\n';
-	f(n){
+	for (int i = 0; i < n; i++){
 		if(c[fa[i*2]]==1){
 			cout<<"row"<<' '<<i<<'\n';
 		}
 	}
-	f(n){
+	for (int i = 0; i < n; i++){
 		if(c[fa[(n+i)*2]]==1){
 			cout<<"col"<<' '<<i<<'\n';
 		}
@@ -112,15 +105,15 @@ int main(){
 	cin.tie(0);
 	while(cin >> n){
 		string s1[n],s2[n],ss;
-		f(n){
+		for (int i = 0; i < n; i++){
 			cin >> s1[i];
 		}
-		f(n){
+		for (int i = 0; i < n; i++){
 			cin >> s2[i];
 		}
 		cin >> ss;
-		f(n){
-			fr(j,0,n){
+		for (int i = 0; i < n; i++){
+			for (int j = 0; j < n; j++){
 				int ch = 0;
 				if(s1[i][j]!=s2[i][j])ch = 1;
 				int chi = 0;
@@ -137,30 +130,30 @@ int main(){
 				}
 				if(ch==1){
 					if(chi==1&&chj==1){
-						g[i*2].pb((n+j)*2+1);
-						g[i*2+1].pb((n+j)*2);
-						g[(n+j)*2+1].pb(i*2);
-						g[(n+j)*2].pb(i*2+1);
+						g[i*2].push_back((n+j)*2+1);
+						g[i*2+1].push_back((n+j)*2);
+						g[(n+j)*2+1].push_back(i*2);
+						g[(n+j)*2].push_back(i*2+1);
 					}
 					else if(chi){
-						g[i*2+1].pb(i*2);
+						g[i*2+1].push_back(i*2);
 					}
 					else{
-						g[(n+j)*2+1].pb((n+j)*2);
+						g[(n+j)*2+1].push_back((n+j)*2);
 					}
 				}
 				else{
 					if(chi==1&&chj==1){
-						g[i*2].pb((n+j)*2);
-						g[(n+j)*2].pb(i*2);
-						g[i*2+1].pb((n+j)*2+1);
-						g[(n+j)*2+1].pb(i*2+1);
+						g[i*2].push_back((n+j)*2);
+						g[(n+j)*2].push_back(i*2);
+						g[i*2+1].push_back((n+j)*2+1);
+						g[(n+j)*2+1].push_back(i*2+1);
 					}
 					else if(chi){
-						g[i*2].pb(i*2+1);
+						g[i*2].push_back(i*2+1);
 					}
 					else if(chj){
-						g[(n+j)*2].pb((n+j)*2+1);
+						g[(n+j)*2].push_back((n+j)*2+1);
 					}
 				}
 			}

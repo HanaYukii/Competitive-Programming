@@ -1,19 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
 const int mod = 998244353;
-const int maxn = 200005;
+const int MAXN = 200005;
 
-ll lz[maxn<<2];
-ll sum[maxn<<2];
-ll mi[maxn<<2];
+long long lz[MAXN<<2];
+long long sum[MAXN<<2];
+long long mi[MAXN<<2];
 void pushup(int x) {
     sum[x] = sum[x<<1] + sum[x<<1|1];
     mi[x] = min(mi[x<<1],mi[x<<1|1]);
@@ -56,7 +48,7 @@ void update(int x, int l, int r,int ql, int qr, int val) {
     }
     pushup(x);
 }
-ll query(int x, int l, int r, int ql, int qr,int &val) {
+long long query(int x, int l, int r, int ql, int qr,int &val) {
     if (mi[x] > val) {
         return 0;
     }

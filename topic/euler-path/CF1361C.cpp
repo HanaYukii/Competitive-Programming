@@ -1,23 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
  
-#define pb push_back
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-#define pll pair<ll,ll>
-#define pii pair<int,int>
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-const int maxn = 1e6 + 50000;
+using pll = pair<long long,long long>;
+using pii = pair<int,int>;
+const int MAXN = 1e6 + 50000;
 const int mod = 1e9 + 7;
-int a[maxn], b[maxn], to[maxn],u[maxn];
+int a[MAXN], b[MAXN], to[MAXN],u[MAXN];
 vector<int>ans;
-vector<int>g[maxn];
+vector<int>g[MAXN];
 int n;
 void dfs(int now) {
     while (g[now].size()) {
@@ -37,11 +27,11 @@ bool check(int x) {
         g[i].clear();
     }
     ans.clear();
-    f1 (n) {
+    for (int i = 1; i <= n; i++) {
         int xx = a[i] & ((1<<x) - 1);
         int yy = b[i] & ((1<<x) - 1);
-        g[xx].pb(i*2);
-        g[yy].pb(i*2-1);
+        g[xx].push_back(i*2);
+        g[yy].push_back(i*2-1);
         u[i*2] = 0;
         u[i*2-1] = 0;
         to[i*2] = yy;
@@ -57,7 +47,7 @@ bool check(int x) {
 }
 void solve() {
     cin >> n;
-    f1 (n) {
+    for (int i = 1; i <= n; i++) {
         cin >> a[i] >> b[i];
     }
     for (int i = 20 ; i >= 0 ; i--) {

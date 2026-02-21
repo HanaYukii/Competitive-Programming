@@ -1,19 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define pb push_back
-#define ll long long
-#define maxn 500005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-int L[maxn],R[maxn];
-vector<int>g[maxn];
+const int MAXN = 500005;
+int L[MAXN],R[MAXN];
+vector<int>g[MAXN];
 int cur;
-int f[maxn<<2];
-int v[maxn<<2];
-int fa[maxn];
+int f[MAXN<<2];
+int v[MAXN<<2];
+int fa[MAXN];
 int n;
 void dfs(int now,int pre){
     L[now] = R[now]=++cur;
@@ -86,11 +80,11 @@ int main(){
     cin.tie(0);
     int m;
     while(cin >> n){
-        f(n-1){
+        for (int i = 0; i < n-1; i++){
             int add1,add2;
             cin >> add1 >> add2;
-            g[add1].pb(add2);
-            g[add2].pb(add1);
+            g[add1].push_back(add2);
+            g[add2].push_back(add1);
         }
         cur = 0;
         dfs(1,0);

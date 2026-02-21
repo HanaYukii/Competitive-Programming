@@ -1,19 +1,11 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
 const int mod = 1e9 + 7;
-const int maxn = 1e6+5;
+const int MAXN = 1e6+5;
 vector<double>di;
-int cnt[maxn];
-double sum1[maxn], sum2[maxn];
+int cnt[MAXN];
+double sum1[MAXN], sum2[MAXN];
 void pull(int x,int l,int r) {
     if (cnt[x] >= 2) {
         sum2[x] = di[r] - di[l - 1];
@@ -63,19 +55,19 @@ void go() {
     for (int i = 0 ; i < n ; i++) {
         double l, u, r, d;
         cin >> l >> u >> r >> d;
-        di.pb(l);
-        di.pb(r);
-        v.pb(make_tuple(u, l, r, 1));
-        v.pb(make_tuple(d, l, r, -1));
+        di.push_back(l);
+        di.push_back(r);
+        v.push_back(make_tuple(u, l, r, 1));
+        v.push_back(make_tuple(d, l, r, -1));
     }
-    sort(all(di));
-    di.erase(unique(all(di)),di.end());
-    sort(all(v));
+    sort((di).begin(), (di).end());
+    di.erase(unique((di).begin(), (di).end()),di.end());
+    sort((v).begin(), (v).end());
     double last = 0;
     double ans = 0;
     for (auto &i : v) {
-        int l = lower_bound(all(di),get<1>(i)) - di.begin() + 1;
-        int r = lower_bound(all(di),get<2>(i)) - di.begin();
+        int l = lower_bound((di).begin(), (di).end(),get<1>(i)) - di.begin() + 1;
+        int r = lower_bound((di).begin(), (di).end(),get<2>(i)) - di.begin();
         //cout << get<1>(i) <<' '<<get<2>(i) << endl;
         ans += sum2[1] * (get<0>(i) - last);
         last = get<0>(i);

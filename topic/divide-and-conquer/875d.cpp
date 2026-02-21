@@ -1,20 +1,13 @@
 #include<bits/stdc++.h>
 
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
 using namespace std;
 const int mod = 1e9+7;
-const int maxn = 200005;
-int idx[maxn<<2];
-int mx[maxn<<2];
-int val[maxn];
+const int MAXN = 200005;
+int idx[MAXN<<2];
+int mx[MAXN<<2];
+int val[MAXN];
 vector<int>bit[30];
-ll ans;
+long long ans;
 int n;
 void pushup(int x){
     if(mx[x<<1]>mx[x<<1|1]){
@@ -33,7 +26,7 @@ void build(int x,int l,int r){
         val[l] = mx[x];
         for(int i=29;i>=0;i--){
             if(val[l]&(1<<i)){
-                bit[i].pb(l);
+                bit[i].push_back(l);
             }
         }
         return ;
@@ -51,13 +44,13 @@ pair<int,int> query(int x,int l,int r,int ql,int qr){
     int mid = (l+r) >> 1;
     if(ql<=mid){
         pair<int,int>tmp = query(x<<1,l,mid,ql,qr);
-        if(tmp.F>=ret.F){
+        if(tmp.first>=ret.first){
             ret = tmp;
         }
     }
     if(qr>mid){
         pair<int,int>tmp = query(x<<1|1,mid+1,r,ql,qr);
-        if(tmp.F>=ret.F){
+        if(tmp.first>=ret.first){
             ret = tmp;
         }
     }
@@ -65,7 +58,7 @@ pair<int,int> query(int x,int l,int r,int ql,int qr){
 }
 void solve(int l,int r){
     if(l>r)return;
-    int mid = query(1,1,n,l,r).S;
+    int mid = query(1,1,n,l,r).second;
     //cout<<l<<' '<<r<<' '<<mid<<endl;
     int L = l - 1;
     int R = r + 1;
@@ -78,7 +71,7 @@ void solve(int l,int r){
             L = max(L,*(--lower_bound(bit[i].begin(),bit[i].end(),mid)));
         }
     }
-    ans -= (ll)(mid - L) * (R - mid);
+    ans -= (long long)(mid - L) * (R - mid);
     solve(l,mid-1);
     solve(mid+1,r);
 }
@@ -87,7 +80,7 @@ int main(){
     cin.tie(0);
     while(cin >> n){
         build(1,1,n);
-        ans = (ll)n * (n+1) / 2;
+        ans = (long long)n * (n+1) / 2;
         solve(1,n);
         cout << ans << endl;
     }

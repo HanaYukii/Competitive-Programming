@@ -1,17 +1,11 @@
 #include<iostream>
 using namespace std;
 
-#define pb push_back
-#define ll long long
-#define maxn 300005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-ll add[maxn<<2];
-ll mi[maxn<<2];
-ll mx[maxn<<2];
-ll amx,ami;
+const int MAXN = 300005;
+long long add[MAXN<<2];
+long long mi[MAXN<<2];
+long long mx[MAXN<<2];
+long long amx,ami;
 void pushdown(int x){
 	if(add[x]){
 		add[x<<1] += add[x];
@@ -46,7 +40,7 @@ void build(int x,int l,int r){
     build(x<<1|1,mid+1,r);
     pushup(x);
 }
-void update(int x,int l,int r,int ql,int qr,ll v,int op){
+void update(int x,int l,int r,int ql,int qr,long long v,int op){
     if(l==ql&&r==qr){
         if(op==1){
         	add[x] += v;

@@ -1,16 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define pb push_back
-#define ll long long
-#define maxn 2005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-#define F first
-#define S second
+const int MAXN = 2005;
 struct s{
     double x;
     double L,R;
@@ -19,10 +10,10 @@ struct s{
 bool cmp(s x,s y){
     return x.x < y.x;
 }
-int cnt[maxn<<2];
-double tot[maxn<<2];
+int cnt[MAXN<<2];
+double tot[MAXN<<2];
 map<double,int>mp;
-double pre[maxn];
+double pre[MAXN];
 int idx;
 void init(){
     idx = 0;
@@ -69,17 +60,17 @@ int main(){
     init();
     vector<s>v;
     double ans = 0;
-    f(n){
+    for (int i = 0; i < n; i++){
         double l, r, u, d;
         cin >> l >> u >> r >> d;
-        v.pb({u,l,r,0,0,1});
-        v.pb({d,l,r,0,0,-1});
+        v.push_back({u,l,r,0,0,1});
+        v.push_back({d,l,r,0,0,-1});
         mp[l];
         mp[r];
     }   
     for(auto &i:mp){
-        i.S = ++idx;
-        pre[idx] = i.F;
+        i.second = ++idx;
+        pre[idx] = i.first;
     }
     for(auto &i:v){
         i.l = mp[i.L] + 1;

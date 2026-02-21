@@ -12,9 +12,9 @@
 #include<map>
 #include<set>
 #include<ctime>
-#define eps 1e-6
-#define LL long long
-#define pii pair<int, int>
+const double EPS = 1e-6;
+using LL = long long;
+using pii = pair<int, int>;
 //#pragma comment(linker, "/STACK:1024000000,1024000000")
 using namespace std;
 

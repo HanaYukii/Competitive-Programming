@@ -1,16 +1,8 @@
 // Kuhn-Munkres (weighted bipartite matching)
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
 const int mod = 1e9 + 7;
-const int maxn = 1e6 + 5;
+const int MAXN = 1e6 + 5;
 long long g[505][505];
 long long lx[505], ly[505], slack[505];
 int visx[505], visy[505], match[505];

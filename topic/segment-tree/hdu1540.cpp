@@ -1,14 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define pb push_back
-#define ll long long
-#define maxn 300005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-int len[maxn<<2],L[maxn<<2],R[maxn<<2];
+const int MAXN = 300005;
+int len[MAXN<<2],L[MAXN<<2],R[MAXN<<2];
 void pushup(int x,int llen,int rlen){
 	len[x] = max(len[x<<1],len[x<<1|1]);
 	len[x] = max(len[x],R[x<<1]+L[x<<1|1]);

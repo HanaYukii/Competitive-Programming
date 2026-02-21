@@ -2,16 +2,8 @@
 // cses 2106
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
 const int mod = 1e9 + 7;
-const int maxn = 200005;
+const int MAXN = 200005;
 void count_sort(vector<int>&p, vector<int>&c) {
     int n = p.size();
     vector<int>cnt(n);
@@ -21,7 +13,7 @@ void count_sort(vector<int>&p, vector<int>&c) {
     vector<int>p_new(n);
     vector<int>pre{0};
     for (auto &i : cnt) {
-        pre.pb(pre.back() + i);
+        pre.push_back(pre.back() + i);
     }
     for (auto &i : p) {
         p_new[pre[c[i]]++] = i;
@@ -40,13 +32,13 @@ void go() {
         for (int i = 0 ; i < n ; i++) {
             a[i] = {s[i], i};
         }
-        sort(all(a));
+        sort((a).begin(), (a).end());
         for (int i = 0 ; i < n ; i++) {
-            p[i] = a[i].S;
+            p[i] = a[i].second;
         }
         c[p[0]] = 0;
         for (int i = 1 ; i < n ; i++) {
-            if (a[i].F == a[i - 1].F) {
+            if (a[i].first == a[i - 1].first) {
                 c[p[i]] = c[p[i - 1]];
             }
             else {
@@ -87,7 +79,7 @@ void go() {
         k = max(k - 1, 0);
     }
     int mx = 0;
-    f((int)s.size() - 1) {
+    for (int i = 0; i < (int)s.size() - 1; i++) {
         if  (lcp[i] > lcp[mx]) {
             mx = i;
         }

@@ -2,18 +2,9 @@
 // cses 2102
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-using namespace std;
-const int maxn = 100005;
+const int MAXN = 100005;
 const int mod = 1e9 + 7;
-int ans[maxn];
+int ans[MAXN];
 struct AC
 {
     struct state
@@ -40,7 +31,7 @@ struct AC
             }
             now = node[now].nxt[c - 'a'];
         }
-        node[now].cnt.pb(num);
+        node[now].cnt.push_back(num);
     }
     void build() {
         node[0].fail = -1;
@@ -107,14 +98,14 @@ void solve() {
     int n;
     cin >> n;
     ac.init();
-    f1(n) {
+    for (int i = 1; i <= n; i++) {
         string s;
         cin >> s;
         ac.insert(s, i);
     }
     ac.build();
     ac.match(str);
-    f1(n) {
+    for (int i = 1; i <= n; i++) {
         if (ans[i]) {
             cout << "YES\n";
         }

@@ -1,16 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define pb push_back
-#define ll long long
-#define maxn 1000005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-#define F first
-#define S second
+const int MAXN = 1000005;
 struct s{
     int x;
     int l,r,del;
@@ -18,8 +9,8 @@ struct s{
 bool cmp(s x,s y){
     return x.x < y.x;
 }
-int cnt[maxn<<2];
-int tot[maxn<<2];
+int cnt[MAXN<<2];
+int tot[MAXN<<2];
 void pushup(int x,int l,int r){
     if(cnt[x]){
         tot[x] = r - l + 1;
@@ -54,19 +45,19 @@ int main(){
     int n;
     cin >> n;
     vector<s>v;
-    ll ans = 0;
-    f(n){
+    long long ans = 0;
+    for (int i = 0; i < n; i++){
         int l, r, u, d;
         cin >> l >> r >> u >> d;
         l++;
-        v.pb({u,l,r,1});
-        v.pb({d,l,r,-1});
+        v.push_back({u,l,r,1});
+        v.push_back({d,l,r,-1});
     }
     sort(v.begin(),v.end(),cmp);
     int last = 0;
     for(auto i:v){
-        ans += (ll)(i.x - last) * tot[1];
-        update(1,1,maxn-5,i.l,i.r,i.del);
+        ans += (long long)(i.x - last) * tot[1];
+        update(1,1,MAXN-5,i.l,i.r,i.del);
         last = i.x;
     }
     cout << ans << endl;

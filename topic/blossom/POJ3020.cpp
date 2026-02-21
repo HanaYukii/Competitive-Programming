@@ -1,26 +1,17 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define pb push_back
-#define ll long long
-#define maxn 405
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-#define ms1(i) memset(i,-1,sizeof(i));
-#define F first
-#define S second 
+const int MAXN = 405;
 int h,w,idx;
-int mp[maxn][maxn];
-int e[maxn][maxn];
-int match[maxn];
-vector<int>g[maxn];
-int Q[maxn],rear;
-int nxt[maxn],mark[maxn],vis[maxn],fa[maxn];
+int mp[MAXN][MAXN];
+int e[MAXN][MAXN];
+int match[MAXN];
+vector<int>g[MAXN];
+int Q[MAXN],rear;
+int nxt[MAXN],mark[MAXN],vis[MAXN],fa[MAXN];
 void init(){
     memset(e,0,sizeof(e));
-    for(int i=0;i<maxn;i++){
+    for(int i=0;i<MAXN;i++){
         g[i].clear();
     }
 }

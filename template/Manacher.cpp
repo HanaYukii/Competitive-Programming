@@ -1,7 +1,7 @@
 // Manacher's algorithm (longest palindromic substring)
-int s[maxn];
-int F[maxn];
-int dp[maxn];
+int s[MAXN];
+int F[MAXN];
+int dp[MAXN];
 void Manacher(int len) {
     int l = 0;
     F[l++] = -2;

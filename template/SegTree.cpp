@@ -1,17 +1,9 @@
 // Segment Tree (point update, range query)
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-const ll mod = 1e9 + 7;
-const int maxn = 5e5+5;
-int sum[maxn<<2];
+const long long mod = 1e9 + 7;
+const int MAXN = 5e5+5;
+int sum[MAXN<<2];
 void pushup(int x) {
     sum[x] = sum[x<<1] + sum[x<<1|1];
 }

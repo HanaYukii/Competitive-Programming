@@ -1,15 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
 const int mod = 1e9 + 7;
-const int maxn = 1e6+5;
+const int MAXN = 1e6+5;
 const long long INF = 1LL<<60;
 struct Dinic {  //O(VVE), with minimum cut 
     static const int MAXN = 5003;
@@ -115,7 +107,7 @@ void go() {
             }
             cnt[mask]++;
         }
-        f(1<<m) {
+        for (int i = 0; i < (1<<m); i++) {
             if (!cnt[i])continue;
             dinic.add_edge(st,i,cnt[i]);
             for (int j = 0 ; j < m ; j++) {

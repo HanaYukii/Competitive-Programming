@@ -2,20 +2,12 @@
 // Range min, Range sum
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
 const int mod = 998244353;
-const int maxn = 1000005;
-ll mx[maxn<<2];
-ll cmx[maxn<<2];
-ll sec[maxn<<2];
-ll sum[maxn<<2];
+const int MAXN = 1000005;
+long long mx[MAXN<<2];
+long long cmx[MAXN<<2];
+long long sec[MAXN<<2];
+long long sum[MAXN<<2];
 void pushup(int x) {
 	sum[x] = sum[x<<1] + sum[x<<1|1];
 	if (mx[x<<1] > mx[x<<1|1]) {
@@ -76,7 +68,7 @@ void update(int x, int l, int r,int ql, int qr, int val) {
 	}
 	pushup(x);
 }
-ll query(int x, int l, int r, int ql, int qr) {
+long long query(int x, int l, int r, int ql, int qr) {
 	if (ql <= l && qr >= r) {
 		return sum[x];
 	}
@@ -92,7 +84,7 @@ ll query(int x, int l, int r, int ql, int qr) {
 		return query(x<<1,l, mid,ql,qr) + query(x<<1|1,mid+1,r,ql,qr);
 	}
 }
-ll query2(int x, int l, int r, int ql, int qr) {
+long long query2(int x, int l, int r, int ql, int qr) {
 	if (ql <= l && qr >= r) {
 		return mx[x];
 	}

@@ -1,15 +1,9 @@
 #include<iostream>
 using namespace std;
 
-#define pb push_back
-#define ll long long
-#define maxn 300005
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define ms(i) memset(i,0,sizeof(i));
-ll lz[maxn<<2];
-ll sum[maxn<<2];
+const int MAXN = 300005;
+long long lz[MAXN<<2];
+long long sum[MAXN<<2];
 void pushdown(int x,int m){
     if(!lz[x])return ;
     lz[x<<1] += lz[x];
@@ -31,7 +25,7 @@ void build(int x,int l,int r){
     build(x<<1|1,mid+1,r);
     pushup(x);
 }
-void update(int x,int l,int r,int ql,int qr,ll v){
+void update(int x,int l,int r,int ql,int qr,long long v){
     if(l==ql&&r==qr){
         sum[x] += (r-l+1) * v;
         lz[x] += v;
@@ -51,13 +45,13 @@ void update(int x,int l,int r,int ql,int qr,ll v){
     }
     pushup(x);
 }
-ll query(int x,int l,int r,int ql,int qr){
+long long query(int x,int l,int r,int ql,int qr){
     if(l==ql&&r==qr){
         return sum[x];
     }
     pushdown(x,r-l+1);
     int mid = (l+r) >> 1;
-    ll ret = 0;
+    long long ret = 0;
     if(qr<=mid){
         ret += query(x<<1,l,mid,ql,qr);
     }
@@ -85,7 +79,7 @@ int main(){
             cout<<query(1,1,n,l,r)<<'\n';
         }
         else{
-            ll v;
+            long long v;
             cin >> v;
             update(1,1,n,l,r,v);
         }

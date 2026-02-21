@@ -1,16 +1,8 @@
 // 0-1 Trie (maximum XOR queries)
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-const ll mod = 998244353;
-const int maxn = 2e5+5;
+const long long mod = 998244353;
+const int MAXN = 2e5+5;
 struct node
 {
     int ch[2];
@@ -19,7 +11,7 @@ struct node
         memset(ch, 0, sizeof(ch));
         cnt = 0;
     }
-}node[maxn * 30];
+}node[MAXN * 30];
 int tot;
 void ins(int x) {
     int cur = 0;
@@ -50,7 +42,7 @@ int dfs(int x) {
 void go() {
     int n;
     cin >> n;
-    f(n) {
+    for (int i = 0; i < n; i++) {
         int x;
         cin >> x;
         ins(x);

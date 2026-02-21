@@ -1,19 +1,10 @@
 #include<iostream>
 using namespace std;
-#define ll long long
-#define fr(i,j,k) for(int i=j;i<k;i++)
-#define f(n) fr(i,0,n)
-#define f1(n) fr(i,1,n+1)
-#define pb push_back
-#define F first
-#define S second
-#define all(x) x.begin(), x.end()
-#define SZ(x) (int)x.size()
-const int maxn = 1048576;
+const int MAXN = 1048576;
 const int mod = 998244353;
 string s;
-ll lz[maxn<<2];
-ll cnt[maxn<<2];
+long long lz[MAXN<<2];
+long long cnt[MAXN<<2];
 void pushdown(int x, int l, int r){
     if(!lz[x])return ;
     int mid = (l + r) >> 1;
@@ -147,11 +138,11 @@ int main(){
         s = "";
         int k;
         cin >> k;
-        f (k) {
+        for (int i = 0; i < k; i++) {
             int cnt;
             string ss;
             cin >> cnt >> ss;
-            fr(j,0,cnt) {
+            for (int j = 0; j < cnt; j++) {
                s += ss;
             }
         }

@@ -14,17 +14,17 @@ void dfs(int now) {
 }
 void solve() {
     ans.clear();
-    f1(500) {
+    for (int i = 1; i <= 500; i++) {
         g[i].clear();
     }
-    f(n) {
+    for (int i = 0; i < n; i++) {
         int x, y;
         cin >> x >> y;
         g[x].insert(y);
         g[y].insert(x);
     }
     int x = 0, y = 0;
-    f1(500) {
+    for (int i = 1; i <= 500; i++) {
         if (g[i].size() % 2 == 1) {
             if (x == 0) {
                 x = i;
@@ -40,7 +40,7 @@ void solve() {
     else {
         dfs(min(x, y));
     }
-    reverse(all(ans));
+    reverse((ans).begin(), (ans).end());
     for (auto &i : ans) {
         cout << i << '\n';
     }
