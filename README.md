@@ -1,6 +1,6 @@
 # Competitive Programming
 
-演算法模板與題目練習紀錄，以 C++ 撰寫。
+演算法模板、題目練習與比賽紀錄，以 C++ 撰寫。
 
 ## 目錄結構
 
@@ -13,16 +13,86 @@
 │   ├── (string)
 │   ├── (math)
 │   └── (misc)
-└── topic/                 # 依主題分類的題目練習
-    ├── 2-sat/
-    ├── blossom/
-    ├── divide-and-conquer/
-    ├── euler-path/
-    ├── flow/
-    ├── game-theory/
-    ├── segment-tree/
-    ├── string/
-    └── sweepline/
+├── topic/                 # 依主題分類的題目練習
+│   ├── 2-sat/
+│   ├── blossom/
+│   ├── divide-and-conquer/
+│   ├── euler-path/
+│   ├── flow/
+│   ├── game-theory/
+│   ├── segment-tree/
+│   ├── string/
+│   └── sweepline/
+└── contest/               # 比賽紀錄
+    ├── codeforces/
+    │   ├── div2-900/      # Round 900 (Div. 2)
+    │   ├── edu-160/       # Educational Round 160
+    │   └── global-25/     # Global Round 25
+    ├── atcoder/
+    │   ├── abc-350/       # AtCoder Beginner Contest 350
+    │   └── arc-180/       # AtCoder Regular Contest 180
+    └── leetcode/
+        ├── weekly-400/    # Weekly Contest 400
+        └── biweekly-130/  # Biweekly Contest 130
+```
+
+## 比賽紀錄 (`contest/`)
+
+每場比賽一個資料夾，檔案用題號命名。
+
+### Codeforces (`contest/codeforces/`)
+
+檔案命名：`A.cpp`, `B.cpp`, `C.cpp`, ...
+
+| 比賽類型 | 資料夾格式 | 範例 |
+|----------|-----------|------|
+| Div. 1 | `div1-{number}` | `div1-901/` |
+| Div. 2 | `div2-{number}` | `div2-900/` |
+| Educational | `edu-{number}` | `edu-160/` |
+| Global Round | `global-{number}` | `global-25/` |
+| 其他 | 比賽名稱簡寫 | `hello-2024/` |
+
+### AtCoder (`contest/atcoder/`)
+
+檔案命名：`A.cpp`, `B.cpp`, `C.cpp`, ...
+
+| 比賽類型 | 資料夾格式 | 範例 |
+|----------|-----------|------|
+| ABC | `abc-{number}` | `abc-350/` |
+| ARC | `arc-{number}` | `arc-180/` |
+| AGC | `agc-{number}` | `agc-065/` |
+
+### LeetCode (`contest/leetcode/`)
+
+檔案命名：`Q1.cpp`, `Q2.cpp`, `Q3.cpp`, `Q4.cpp`
+
+| 比賽類型 | 資料夾格式 | 範例 |
+|----------|-----------|------|
+| Weekly | `weekly-{number}` | `weekly-400/` |
+| Biweekly | `biweekly-{number}` | `biweekly-130/` |
+
+### 快速開始
+
+**建立新比賽資料夾**（自動複製模板 + Makefile）：
+
+```bash
+# PowerShell
+.\scripts\new-contest.ps1 cf div2-900       # Codeforces Div.2 Round 900 (預設 7 題)
+.\scripts\new-contest.ps1 at abc-350         # AtCoder ABC 350
+.\scripts\new-contest.ps1 lc weekly-400      # LeetCode Weekly 400 (預設 4 題)
+.\scripts\new-contest.ps1 cf div2-900 8      # 指定題數
+
+# Bash / WSL
+./scripts/new-contest.sh cf div2-900
+```
+
+**編譯與執行**（進入比賽資料夾後）：
+
+```bash
+make A          # 編譯 A.cpp → A
+make run T=A    # 編譯並執行 A
+make all        # 編譯所有 .cpp
+make clean      # 清除執行檔
 ```
 
 ---
